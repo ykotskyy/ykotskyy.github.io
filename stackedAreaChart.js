@@ -61,7 +61,7 @@ var areaChart={
         var tooltip = d3.select("#tooltip");
 
 
-        d3.csv("https://raw.githubusercontent.com/yan6pz/DataVisualization/master/PropertyPrices.csv", function(error, data) {
+        d3.csv("https://github.com/ykotskyy/ykotskyy.github.io/blob/master/PropertyPrices.csv", function(error, data) {
             color.domain(d3.keys(data[0]).filter(function(key) {
                 return key !== "PeriodBegin";
             }));

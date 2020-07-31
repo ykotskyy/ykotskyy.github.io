@@ -1,5 +1,5 @@
 var multiDimantional={
-	  
+
 	  display: function () {
         var tooltip = d3.select("body")
             .append("div")
@@ -29,7 +29,7 @@ var multiDimantional={
             .attr("transform", "translate(" + m[3] + "," + m[0] + ")");
 
 
-        d3.csv("https://raw.githubusercontent.com/yan6pz/DataVisualization/master/PropertySales.csv", function(error, propertySales) {
+        d3.csv("https://github.com/ykotskyy/ykotskyy.github.io/blob/master/PropertySales.csv", function(error, propertySales) {
 
             // Extract the list of dimensions and create a scale for each different than the city.
             x.domain(dimensions = d3.keys(propertySales[0]).filter(function(d) {
