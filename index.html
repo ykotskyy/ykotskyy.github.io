@@ -4,7 +4,7 @@
 
 body { font: 12px Arial;}
 
-path { 
+path {
     stroke: steelblue;
     stroke-width: 2;
     fill: none;
@@ -22,14 +22,14 @@ path {
 <body>
 
 <div id="option">
-    <input name="updateButton" 
-           type="button" 
-           value="Update" 
+    <input name="updateButton"
+           type="button"
+           value="Update"
            onclick="updateData()" />
 </div>
 
 <!-- load the d3.js library -->    
-<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="https://d3js.org/d3.v5.js"></script
 
 <script>
 
@@ -56,14 +56,14 @@ var yAxis = d3.svg.axis().scale(y)
 var valueline = d3.svg.line()
     .x(function(d) { return x(d.date); })
     .y(function(d) { return y(d.close); });
-    
+
 // Adds the svg canvas
 var svg = d3.select("body")
     .append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
     .append("g")
-        .attr("transform", 
+        .attr("transform",
               "translate(" + margin.left + "," + margin.top + ")");
 
 // Get the data
@@ -105,7 +105,7 @@ function updateData() {
 	    	d.close = +d.close;
 	    });
 
-    	// Scale the range of the data again 
+    	// Scale the range of the data again
     	x.domain(d3.extent(data, function(d) { return d.date; }));
 	    y.domain([0, d3.max(data, function(d) { return d.close; })]);
 
