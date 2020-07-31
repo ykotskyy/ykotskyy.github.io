@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="https://yan6pz.github.io/DataVisualization/index.css">
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script src="https://yan6pz.github.io/DataVisualization/stackedAreaChart.js"></script>
+<script src="https://yan6pz.github.io/DataVisualization/parallelCoords.js"></script>
+</head>
+<body>
+<h1>Data Visualization - Final Project</h1>
+
+<p>Click on the buttons inside the tabbed menu:</p>
+
+<div class="tab">
+	<button class="tablinks" onclick="openVisualization(event, 'Overview')">About the Visualization</button>
+	<button class="tablinks" onclick="openVisualization(event, 'AreaChart')">Property Price Analysis</button>
+	<button class="tablinks" onclick="openVisualization(event, 'ParallelCoords')">Multidimentional Analysis</button>
+</div>
+
+<div id="Overview" class="tabcontent">
+   <ul>
+      <li>
+         Does the narrative visualization correctly follow the hybrid structure as stated by the essay?
+         <p>The narrative visualization follows the Martini glass structure with vague note of interactive slide-show(the tabbed experience). Initially, a stacked area chart is present by clicking on "Property Price Analysis" where the y axis has the value of given property per city
+            and the x axis represents the years 2012-2018 during which the data was collected. On the other tab, the "Multidimentional Analysis" shows correlations between 8 dimentions of the data.
+            Both visualizations have an element of the drill-down which is the tooltip displayed once hovering over given color(the area chart) or given line (the parallel coordinates chart).
+            However, for both of them initially the data is presented(the bottom of the Martini glass) and the user can operate further	hovering, brushing or selecting data elements(the top of the Martini glass).
+			
+         </p>
+      </li>
+      <li>
+         Does the narrative visualization effectively utilize scenes?
+         <p>There are three scenes in total. The first is the overview/description, which may not count as a real scene although it is still part of the state machine playing the role of initial state-
+            the state the user is initially landing on. The next two tabs- stacked area chart and parallel coordinates are the real scenes giving meaningful data and correlation regarding the 
+            data problem and questions the visualizations are trying to solve. Every scene is following common template for visual consistency having white background color and same stylization. 
+         </p>
+         <p>The area chart has animation which is triggered on page load and is not controlled by the user. 
+            The colors are picked so that they clearly distinguish the different cities which effect is even emphasized by the animation. By hovering over a given color it drills down for more
+            detailed information using tooltips.
+         </p>
+         <p>The parallel coordinates visualization gives the ability to the user to select one or more lines and the logic highlights them so that it is easier to track their correlation
+            and how different attributes influence the one another. Moreover, once hovered given line becomes red and a tooltip with the corresponding price is shown.
+         </p>
+      </li>
+      <li>
+         Does the narrative visualization effectively utilize annotations?
+         <p> On the first visualization for every stacked color there is a city name on the right-hand side that clearly displays which city corresponds to this particular color.
+			Looking at the multidimentional analysis all the eight dimention axes are annotated showing their names.
+		 </p>
+      </li>
+      <li>
+         Does the narrative visualization effectively utilize parameters?
+         <p> The transition between different scenes and visualization is done based on click on a partucular tab. If we consider the web page as state machine these tabs
+            are user driven parameters which change the states. For axample, a simple value of the tab parameter is the index of the tab. Once the index is provided the logic replaces
+			the tab with the one the user has chosen. Another parameter that is not controlled by the user directly but indirectly is the rendering of the area chart. Once the user changes
+			the tab the animation starts rendering each city's data within 1 second interval. Moreover, the mouse position is also used as parameter when it hovers a given chart's data. Based
+			on the mouse coordinates a particular data item is shown in a tooltip box.
+         </p>
+      </li>
+      <li>
+         Does the narrative visualization effectively utilize triggers?
+         <p>When the user selects line/s from the multidimentional graph this triggers an event which highlights only the selected lines. For both visualizations there is hover event bound
+			that triggers a tooltip. In the case of the parallel coordinates the hover highlights the line making its color red. On page load event for the area chart an animation is triggered.
+			Voronoi regions and hints are used to increase the affordance and make it easier for the user to understand how to interact with the graphs.
+		 </p>
+      </li>
+	   <li>
+         Code organization.
+         <p> Both the parallel coordinates and area chart visualizations are written in D3.js. Each visualization lives in a separate .js file referenced in the index.html page and hosted in GitHub Pages.
+			Simple JavaScript triggers the tabs to change between the description, area chart and multidimentional analysis. A common .css file referenced in the index page is responsible for 
+			ensuring the visual consistency.
+		 </p>
+      </li>
+   </ul>
+</div>
+
+<div id="AreaChart" class="tabcontent">
+  <div id="tooltip"></div>
+	<p> The Property Price Analysis area chart displays an overview of how the prices are changing during the 2012-2018 period of time per every of the eight chosen cities. It is more than
+	clear that the prices are almost always constantly high in cities like San Francisco. Which can distinguish it as an outlier. On the other hand, one of the lowest property prices during the 
+	years are these for Chicago. There is a noticeable increase but overall the cost of real estate is lower in comparison with the other seven examples. 
+	</p>
+</div>
+
+<div id="ParallelCoords" class="tabcontent">
+	<p>The following visualization analysses the correlations between different data properties which are part of the dataset. Some of these properties show strong dependency on each other.
+	For instance, the real estate properties in San Francisco are usually with higher prices(>$1M) and the amount of time the property stays on the market is less in comparison to the other cities.
+	An interesting trend is that properties in cities with lower inventory and less new listings are sold quicker and usually above the listed price. 
+	</p>
+</div>
+
+<script>
+function openVisualization(evt, visName) {
+    var i, tabcontent, tablinks;
+	d3.select("svg").remove();
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+			tablinks[i].className = tablinks[i].className.replace(" active", "");
+			tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(visName).style.display = "block";
+	if(evt!==0)
+		evt.currentTarget.className += " active";
+		
+	if(visName==='ParallelCoords')
+		multiDimantional.display();
+	if(visName==='AreaChart')
+		areaChart.display();
+	if(visName==='Overview')
+		tablinks[0].className += " active";
+}
+openVisualization(0,'Overview');
+</script>
+     
+</body>
+</html> 
