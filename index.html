@@ -2,10 +2,10 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="https://yan6pz.github.io/DataVisualization/index.css">
+<link rel="stylesheet" type="text/css" href="https://github.com/ykotskyy/ykotskyy.github.io/blob/master/index.css">
 <script src="https://d3js.org/d3.v3.min.js"></script>
-<script src="https://yan6pz.github.io/DataVisualization/stackedAreaChart.js"></script>
-<script src="https://yan6pz.github.io/DataVisualization/parallelCoords.js"></script>
+<script src="https://github.com/ykotskyy/ykotskyy.github.io/blob/master/parallelCoords.js"></script>
+<script src="https://github.com/ykotskyy/ykotskyy.github.io/blob/master/parallelCoords.js"></script>
 </head>
 <body>
 <h1>Data Visualization - Final Project</h1>
@@ -26,16 +26,16 @@
             and the x axis represents the years 2012-2018 during which the data was collected. On the other tab, the "Multidimentional Analysis" shows correlations between 8 dimentions of the data.
             Both visualizations have an element of the drill-down which is the tooltip displayed once hovering over given color(the area chart) or given line (the parallel coordinates chart).
             However, for both of them initially the data is presented(the bottom of the Martini glass) and the user can operate further	hovering, brushing or selecting data elements(the top of the Martini glass).
-			
+
          </p>
       </li>
       <li>
          Does the narrative visualization effectively utilize scenes?
          <p>There are three scenes in total. The first is the overview/description, which may not count as a real scene although it is still part of the state machine playing the role of initial state-
-            the state the user is initially landing on. The next two tabs- stacked area chart and parallel coordinates are the real scenes giving meaningful data and correlation regarding the 
-            data problem and questions the visualizations are trying to solve. Every scene is following common template for visual consistency having white background color and same stylization. 
+            the state the user is initially landing on. The next two tabs- stacked area chart and parallel coordinates are the real scenes giving meaningful data and correlation regarding the
+            data problem and questions the visualizations are trying to solve. Every scene is following common template for visual consistency having white background color and same stylization.
          </p>
-         <p>The area chart has animation which is triggered on page load and is not controlled by the user. 
+         <p>The area chart has animation which is triggered on page load and is not controlled by the user.
             The colors are picked so that they clearly distinguish the different cities which effect is even emphasized by the animation. By hovering over a given color it drills down for more
             detailed information using tooltips.
          </p>
@@ -68,7 +68,7 @@
 	   <li>
          Code organization.
          <p> Both the parallel coordinates and area chart visualizations are written in D3.js. Each visualization lives in a separate .js file referenced in the index.html page and hosted in GitHub Pages.
-			Simple JavaScript triggers the tabs to change between the description, area chart and multidimentional analysis. A common .css file referenced in the index page is responsible for 
+			Simple JavaScript triggers the tabs to change between the description, area chart and multidimentional analysis. A common .css file referenced in the index page is responsible for
 			ensuring the visual consistency.
 		 </p>
       </li>
@@ -78,15 +78,15 @@
 <div id="AreaChart" class="tabcontent">
   <div id="tooltip"></div>
 	<p> The Property Price Analysis area chart displays an overview of how the prices are changing during the 2012-2018 period of time per every of the eight chosen cities. It is more than
-	clear that the prices are almost always constantly high in cities like San Francisco. Which can distinguish it as an outlier. On the other hand, one of the lowest property prices during the 
-	years are these for Chicago. There is a noticeable increase but overall the cost of real estate is lower in comparison with the other seven examples. 
+	clear that the prices are almost always constantly high in cities like San Francisco. Which can distinguish it as an outlier. On the other hand, one of the lowest property prices during the
+	years are these for Chicago. There is a noticeable increase but overall the cost of real estate is lower in comparison with the other seven examples.
 	</p>
 </div>
 
 <div id="ParallelCoords" class="tabcontent">
 	<p>The following visualization analysses the correlations between different data properties which are part of the dataset. Some of these properties show strong dependency on each other.
 	For instance, the real estate properties in San Francisco are usually with higher prices(>$1M) and the amount of time the property stays on the market is less in comparison to the other cities.
-	An interesting trend is that properties in cities with lower inventory and less new listings are sold quicker and usually above the listed price. 
+	An interesting trend is that properties in cities with lower inventory and less new listings are sold quicker and usually above the listed price.
 	</p>
 </div>
 
@@ -106,7 +106,7 @@ function openVisualization(evt, visName) {
     document.getElementById(visName).style.display = "block";
 	if(evt!==0)
 		evt.currentTarget.className += " active";
-		
+
 	if(visName==='ParallelCoords')
 		multiDimantional.display();
 	if(visName==='AreaChart')
@@ -116,6 +116,6 @@ function openVisualization(evt, visName) {
 }
 openVisualization(0,'Overview');
 </script>
-     
+
 </body>
-</html> 
+</html>
