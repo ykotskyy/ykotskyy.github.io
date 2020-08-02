@@ -6,15 +6,31 @@
         <title> Regional GDP Growth (1971-2019) </title>
     </head>
     <body>
-        <div id="chartarea"></div>
-        <div id="legend"></div>
+        <div id="wrapper">
+            <div id="chartarea"></div>
+            <div id="legend"></div>
+        </div>
     </body>
 </html>
 
 
 <style>
     body{backgroud-color:grey;}
-    #legend{float:left; display:block; border:1px solid green;}
+    #wrapper{
+        width:90%;
+        margin-left:5%;
+        display:block;
+        float:left;
+    }
+    #legend{
+        float:left; 
+        display:block; 
+        border:1px solid black; 
+        height:200px; 
+        width:700px; 
+        background-color:white;
+        box-shadow: 5px 5px 0px 0px;
+    }
     #chartarea{float:left; display:block; }
     
     
