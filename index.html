@@ -31,7 +31,7 @@ d3.csv("data/GDPdata1.csv",
   function(d){
     return {
     //  date : d3.timeParse("%Y-%m-%d")(d.date), value : d.value
-    Time : +d.Time,
+    Time : d3.timeParse("%Y")(d.Time),
     East_Asia_and_Pacific 	 :  +d.EastAsiaandPacific,
     Europe_and_Central_Asia 	 : +d.EuropeandCentralAsia,
     Middle_East_and_North_Africa 	 : +d.MiddleEastandNorthAfrica,
@@ -47,8 +47,8 @@ d3.csv("data/GDPdata1.csv",
   function(data) {
 
     // Add X axis --> it is a date format
-    var x = d3.scaleLinear()
-      .domain(d3.max(data, function(d) { return d.Time; }))
+    var x = d3.scaleTime()
+      .domain(d3.extent(data, function(d) { return d.Time; }))
       .range([ 0, width ]);
     svg.append("g")
       .attr("transform", "translate(0," + height + ")")
@@ -68,7 +68,7 @@ d3.csv("data/GDPdata1.csv",
       .attr("stroke", "steelblue")
       .attr("stroke-width", 1.5)
       .attr("d", d3.line()
-        .x(function(d) { return x(d.time) })
+        .x(function(d) { return x(d.Time) })
         .y(function(d) { return y(d.Europe_and_Central_Asia) })
         )
 
