@@ -11,14 +11,14 @@ body {
   padding: 20px;
   text-align: center;
   font-size: 25px;
-  background-image: url("../data/img_bg_header.jpg");
+  /*background-image: url("../data/img_bg_header.jpg");
 }
 
 /* Create three unequal columns that floats next to each other */
 .column {
   float: left;
   padding: 10px;
-  background-image: url("../data/img_bg_ecconomy.jpg");
+/*  background-image: url("../data/img_bg_ecconomy.jpg");
 }
 
 /* Left and right column */
@@ -43,7 +43,7 @@ body {
   background-color: #f1f1f1;
   padding: 10px;
   text-align: center;
-  background-image: url("../data/img_bg_footer.png");
+  /*background-image: url("../data/img_bg_footer.png");
 }
 
 /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
