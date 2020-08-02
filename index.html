@@ -25,6 +25,33 @@ var svg = d3.select("#chartarea")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
+function genderLegend() {
+  // Draw the gender legend
+  var legend = d3.select(".chart").selectAll(".legend")
+      .data(c.domain().slice().reverse())
+    .enter().append("g")
+      .attr("class","legend")
+      .attr("transform",function(d,i) {
+        return "translate(0," + i * 20 + ")";
+      });
+
+  legend.append("rect")
+      .attr("x",475)
+      .attr("y",9)
+      .attr("width",18)
+      .attr("height",18)
+      .style("fill",c);
+
+  legend.append("text")
+      .attr("x",465)
+      .attr("y",18)
+      .attr("dy",".35em")
+      .style("text-anchor","end")
+      .text(function(d) {
+        return d.charAt(0).toUpperCase()+d.slice(1);
+      });
+}    
+    
 //Read the data
 d3.csv("data/GDPdata1.csv",
   // When reading the csv, I must format variables:
@@ -75,11 +102,6 @@ d3.csv("data/GDPdata1.csv",
       .attr("dy", "1em")
       .style("text-anchor", "middle")
       .text("GDP growth (annual %)");   
-    
-//svg.append("circle").attr("cx",200).attr("cy",130).attr("r", 6).style("fill", "steelblue")
-//svg.append("circle").attr("cx",200).attr("cy",160).attr("r", 6).style("fill", "red")
-//svg.append("text").attr("x", 220).attr("y", 130).text("East Asia & Pacific").style("font-size", "15px").attr("alignment-bottom","middle")
-//svg.append("text").attr("x", 220).attr("y", 160).text("Europe & Central Asia").style("font-size", "15px").attr("alignment-bottom","middle")
 
     // Add the line
     var East = d3.line()
@@ -161,6 +183,8 @@ d3.csv("data/GDPdata1.csv",
       .attr("stroke", "black")
       .attr("stroke-width", 1.5)
       .attr("d", Latin);
+    
+    genderLegend()
 
 }, )
     
