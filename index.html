@@ -65,11 +65,12 @@ var svg = d3.select("body")
               "translate(" + margin.left + "," + margin.top + ")");
 
 // Get the data
-d3.csv("data.csv", function(error, data) {
-    data.forEach(function(d) {
-        d.date = parseDate(d.date);
-        d.close = +d.close;
-    });
+var  data1 =  d3.csv("data.csv", function(d) {
+  return{
+        date : parseDate(d.date),
+        close: +d.close
+      };
+
 
     // Scale the range of the data
     x.domain(d3.extent(data, function(d) { return d.date; }));
