@@ -12,7 +12,7 @@
 <script>
 
 // set the dimensions and margins of the graph
-var margin = {top: 10, right: 30, bottom: 30, left: 60},
+var margin = {top: 50, right: 30, bottom: 30, left: 60},
     width = 860 - margin.left - margin.right,
     height = 800 - margin.top - margin.bottom;
 
@@ -53,15 +53,29 @@ d3.csv("data/GDPdata1.csv",
     svg.append("g")
       .attr("transform", "translate(0," + height + ")")
       .call(d3.axisBottom(x))
-      //.text("Year");
-
+     
+    svg.append("text")             
+      .attr("transform",
+            "translate(" + (width/2) + " ," + 
+                           (height + margin.top + 20) + ")")
+      .style("text-anchor", "middle")
+      .text("Date");
+    
     // Add Y axis
     var y = d3.scaleLinear()
       .domain([-5, 10])
       .range([ height, 0 ]);
     svg.append("g")
       .call(d3.axisLeft(y))
-       // .text("GDP growth (annual %)");
+    
+    svg.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 0 - margin.left)
+      .attr("x",0 - (height / 2))
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .text("Value");   
+    
 
     // Add the line
     var East = d3.line()
