@@ -162,35 +162,7 @@ d3.csv("data/GDPdata1.csv",
       .attr("stroke-width", 1.5)
       .attr("d", Latin);
 
-},  
-    
-   function genderLegend() {
-  // Draw the gender legend
-  var legend = d3.select(".chart").selectAll(".legend")
-      .data(c.domain().slice().reverse())
-    .enter().append("g")
-      .attr("class","legend")
-      .attr("transform",function(d,i) {
-        return "translate(0," + i * 20 + ")";
-      });
-
-  legend.append("rect")
-      .attr("x",475)
-      .attr("y",9)
-      .attr("width",18)
-      .attr("height",18)
-      .style("fill",c);
-
-  legend.append("text")
-      .attr("x",465)
-      .attr("y",18)
-      .attr("dy",".35em")
-      .style("text-anchor","end")
-      .text(function(d) {
-        return d.charAt(0).toUpperCase()+d.slice(1);
-      });
-}   
-      )
+}, )
     
 
 
