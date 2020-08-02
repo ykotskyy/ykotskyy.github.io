@@ -70,6 +70,16 @@ d3.csv("data/GDPdata1.csv",
       .attr("d", d3.line()
         .x(function(d) { return x(d.Time) })
         .y(function(d) { return y(d.Europe_and_Central_Asia) })
+            
+     svg.append("path")
+      .datum(data)
+      .attr("fill", "none")
+      .attr("stroke", "red")
+      .attr("stroke-width", 1.5)
+      .attr("d", d3.line()
+        .x(function(d) { return x(d.Time) })
+        .y(function(d) { return y(d.East_Asia_and_Pacific) }) 
+            
         )
 
 })
