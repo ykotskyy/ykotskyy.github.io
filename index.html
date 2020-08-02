@@ -31,7 +31,7 @@ d3.csv("data/GDPdata1.csv",
   function(d){
     return {
     //  date : d3.timeParse("%Y-%m-%d")(d.date), value : d.value
-    Time : +d.Time,
+    Time : d3.parseDate(String(d.time)),
     East_Asia_and_Pacific 	 :  +d.EastAsiaandPacific,
     Europe_and_Central_Asia 	 : +d.EuropeandCentralAsia,
     Middle_East_and_North_Africa 	 : +d.MiddleEastandNorthAfrica,
