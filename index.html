@@ -104,6 +104,43 @@ d3.csv("data/GDPdata1.csv",
       .attr("stroke", "red")
       .attr("stroke-width", 1.5)
       .attr("d", Europe)
+    
+     svg.append("path")
+      .datum(data)
+      .attr("fill", "none")
+      .attr("stroke", "green")
+      .attr("stroke-width", 1.5)
+      .attr("d", Middle);
+   
+            
+     svg.append("path")
+      .datum(data)
+      .attr("fill", "none")
+      .attr("stroke", "orange")
+      .attr("stroke-width", 1.5)
+      .attr("d", North)
+    
+    svg.append("path")
+      .datum(data)
+      .attr("fill", "none")
+      .attr("stroke", "gray")
+      .attr("stroke-width", 1.5)
+      .attr("d", South);
+   
+            
+     svg.append("path")
+      .datum(data)
+      .attr("fill", "none")
+      .attr("stroke", "purple")
+      .attr("stroke-width", 1.5)
+      .attr("d", Sub)
+
+    svg.append("path")
+      .datum(data)
+      .attr("fill", "none")
+      .attr("stroke", "black")
+      .attr("stroke-width", 1.5)
+      .attr("d", Latin)
 
 })
 
