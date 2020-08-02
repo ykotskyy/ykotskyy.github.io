@@ -62,25 +62,48 @@ d3.csv("data/GDPdata1.csv",
       .call(d3.axisLeft(y));
 
     // Add the line
+    var East = d3.line()
+    .x(function(d) { return x(d.Time); })
+    .y(function(d) { return y(d.East_Asia_and_Pacific); });
+    
+    var Europe = d3.line()
+    .x(function(d) { return x(d.Time); })
+    .y(function(d) { return y(d.Europe_and_Central_Asia); });
+    
+    var Middle = d3.line()
+    .x(function(d) { return x(d.Time); })
+    .y(function(d) { return y(d.Middle_East_and_North_Africa); });
+    
+    var North = d3.line()
+    .x(function(d) { return x(d.Time); })
+    .y(function(d) { return y(d.North_America); });
+    
+    var South = d3.line()
+    .x(function(d) { return x(d.Time); })
+    .y(function(d) { return y(d.South_Asia); });
+    
+    var Sub = d3.line()
+    .x(function(d) { return x(d.Time); })
+    .y(function(d) { return y(d.Sub_Saharan_Africa); });
+    
+    var Latin = d3.line()
+    .x(function(d) { return x(d.Time); })
+    .y(function(d) { return y(d.Latin_America_and_Caribbean); });
+    
     svg.append("path")
       .datum(data)
       .attr("fill", "none")
       .attr("stroke", "steelblue")
       .attr("stroke-width", 1.5)
-      .attr("d", d3.line()
-        .x(function(d) { return x(d.Time) })
-        .y(function(d) { return y(d.Europe_and_Central_Asia) })
+      .attr("d", East);
+   
             
      svg.append("path")
       .datum(data)
       .attr("fill", "none")
       .attr("stroke", "red")
       .attr("stroke-width", 1.5)
-      .attr("d", d3.line()
-        .x(function(d) { return x(d.Time) })
-        .y(function(d) { return y(d.East_Asia_and_Pacific) }) 
-            
-        )
+      .attr("d", Europe)
 
 })
 
