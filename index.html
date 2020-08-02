@@ -1,59 +1,67 @@
+<!-- Code from d3-graph-gallery.com -->
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<title>Top 10 countries by GDP Analysis</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	<!-- Load d3-base -->
-	<script type = "text/javascript" src="https://d3js.org/d3.v5.min.js"></script>
-	<!-- Load d3-slider lib -->
-	<script type = "text/javascript" src="https://unpkg.com/d3-simple-slider"></script>
-	<!-- Load d3-annotation -->
-	<script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
-	<script type = "text/javascript" src="index.js"></script>
-</head>
+<meta charset="utf-8">
 
-<body>
-	<div class="header">
-		<div style="background-color: #f1f1f1;">
-			<h1>World's Top 10 Ecconomies and their Populations Analysis</h1>
-			<p>This narrative visualization explains the growth story of India's ecconomy over last 5 years and
-			analysis around how it compares with other world's top 10 ecconomies. How some of the other
-			measures like GDP growth and population changed over years.
-			</p>
-		</div>
-	</div>
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v4.js"></script>
 
-	<div class="row">
-		<!--<div id= "left" class="column side" style="background-color:#aaa;">
-			<div class = "nav" style="height:500px">
-			</div>
-		</div>-->
-		<div id = "stage" class="column middle" style="background-color:#bbb;"></div>
-		<br/><h2 style="text-align: center;">Detailed Analysis (Martini Glass Fork)</h2>
-		<div id = "drilldown_selectors" class="column middle" style="background-color:#bbb;display:flex;height:200px;">
-			<div id = "measure_selector"  align="center" style="width:50%;">
-				<h2>Select Measure</h2>
-				<div id="dropdown-measure"></div>
-			</div>
-			<div id = "year_selector">
-			  <div style="display:flex;">
-				<h2 style="width:40%;">Select Year</h2>
-				<p id="slider-value" style="text-align:center;"></p>
-				</div>
-				<div id="slider-year" align="center"></div>
-  		</div>
-		</div>
-		<div id = "drilldown_stage" class="column middle" style="background-color:#bbb;"></div>
-		<!--<div id= "right" class="column side" style="background-color:#ccc;">
-			<div class = "nav" style="height:500px"></div>
-		</div>
-	</div>-->
-	<div class="footer">
-		<p>CS498:Summer19:Data Visualization Project(7-3-3)     Built By: Krishna Shekhram(ks32@illinois.edu)     Date : August, 4th, 2019</p>
-		<p>Data Source : <a href="https://databank.worldbank.org/reports.aspx?source=world-development-indicators">World Bank's World Development Indicator</a></p>
-	</div>
-</body>
+<!-- Create a div where the graph will take place -->
+<div id="chartarea"></div>
 
-</html>
+
+<script>
+
+// set the dimensions and margins of the graph
+var margin = {top: 10, right: 30, bottom: 30, left: 60},
+    width = 460 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+var svg = d3.select("#chartarea")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+//Read the data
+d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/3_TwoNumOrdered_comma.csv",
+
+  // When reading the csv, I must format variables:
+  function(d){
+    return { date : d3.timeParse("%Y-%m-%d")(d.date), value : d.value }
+  },
+
+  // Now I can use this dataset:
+  function(data) {
+
+    // Add X axis --> it is a date format
+    var x = d3.scaleTime()
+      .domain(d3.extent(data, function(d) { return d.date; }))
+      .range([ 0, width ]);
+    svg.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x));
+
+    // Add Y axis
+    var y = d3.scaleLinear()
+      .domain([0, d3.max(data, function(d) { return +d.value; })])
+      .range([ height, 0 ]);
+    svg.append("g")
+      .call(d3.axisLeft(y));
+
+    // Add the line
+    svg.append("path")
+      .datum(data)
+      .attr("fill", "none")
+      .attr("stroke", "steelblue")
+      .attr("stroke-width", 1.5)
+      .attr("d", d3.line()
+        .x(function(d) { return x(d.date) })
+        .y(function(d) { return y(d.value) })
+        )
+
+})
+
+</script>
