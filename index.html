@@ -1,187 +1,59 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-<style> /* set the CSS */
+<html lang="en">
+<head>
+	<title>Top 10 countries by GDP Analysis</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="./src/styles.css">
+	<!-- Load d3-base -->
+	<script type = "text/javascript" src="https://d3js.org/d3.v5.min.js"></script>
+	<!-- Load d3-slider lib -->
+	<script type = "text/javascript" src="https://unpkg.com/d3-simple-slider"></script>
+	<!-- Load d3-annotation -->
+	<script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
+	<script type = "text/javascript" src="./src/index.js"></script>
+</head>
 
-body { font: 12px Arial;}
-
-path {
-    stroke: steelblue;
-    stroke-width: 2;
-    fill: none;
-}
-
-.axis path,
-.axis line {
-    fill: none;
-    stroke: grey;
-    stroke-width: 1;
-    shape-rendering: crispEdges;
-}
-
-</style>
 <body>
+	<div class="header">
+		<div style="background-color: #f1f1f1;">
+			<h1>World's Top 10 Ecconomies and their Populations Analysis</h1>
+			<p>This narrative visualization explains the growth story of India's ecconomy over last 5 years and 
+			analysis around how it compares with other world's top 10 ecconomies. How some of the other 
+			measures like GDP growth and population changed over years.
+			</p>
+		</div>
+	</div>
 
-<div id="option">
-    <input name="updateButton"
-           type="button"
-           value="Update"
-           onclick="updateData()" />
-</div>
-
-<!-- load the d3.js library -->
-<script src="https://d3js.org/d3.v5.min.js"></script>
-
-<script>
-
-// Set the dimensions of the canvas / graph
-var margin = {top: 30, right: 20, bottom: 30, left: 50},
-    width = 600 - margin.left - margin.right,
-    height = 270 - margin.top - margin.bottom;
-
-// Parse the date / time
-var parseDate = d3.timeParse("%d-%b-%y");
-
-// Set the ranges
-var x = d3.scaleTime().range([0, width]);
-var y = d3.scaleLinear().range([height, 0]);
-
-// Define the axes
-var xAxis = d3.axisBottom().scale(x).ticks(5);
-
-var yAxis = d3.axisLeft().scale(y).ticks(5);
-
-// Define the line
-var valueline = d3.line()
-    .x(function(d) { return x(d.date); })
-    .y(function(d) { return y(d.close); });
-
-// Adds the svg canvas
-var svg = d3.select("body")
-    .append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-        .attr("transform",
-              "translate(" + margin.left + "," + margin.top + ")");
-
-// Get the data
-var  data1 =  d3.csv("data.csv", function(d) {
-  return{
-        date : parseDate(d.date),
-        close: +d.close
-      };
-
-
-    // Scale the range of the data
-    x.domain(d3.extent(data, function(d) { return d.date; }));
-    y.domain([0, d3.max(data, function(d) { return d.close; })]);
-
-    // Add the valueline path.
-    svg.append("path")
-        .attr("class", "line")
-        .attr("d", valueline(data));
-
-    // Add the X Axis
-    svg.append("g")
-        .attr("class", "x axis")
-        .attr("transform", "translate(0," + height + ")")
-        .call(xAxis);
-
-    // Add the Y Axis
-    svg.append("g")
-        .attr("class", "y axis")
-        .call(yAxis);
-
-});
-
-// ** Update data section (Called from the onclick)
-function updateData() {
-
-    // Get the data again
-    var data2 = d3.csv("data-alt.csv", function(d) {
-       	return {
-	    	date : parseDate(d.date),
-	    	close: +d.close
-	    };
-
-    	// Scale the range of the data again
-    	x.domain(d3.extent(data, function(d) { return d.date; }));
-	    y.domain([0, d3.max(data, function(d) { return d.close; })]);
-
-    // Select the section we want to apply our changes to
-    var svg = d3.select("body").transition();
-
-    // Make the changes
-        svg.select(".line")   // change the line
-            .duration(750)
-            .attr("d", valueline(data));
-        svg.select(".x.axis") // change the x axis
-            .duration(750)
-            .call(xAxis);
-        svg.select(".y.axis") // change the y axis
-            .duration(750)
-            .call(yAxis);
-
-    });
-}
-
-</script>
+	<div class="row">
+		<!--<div id= "left" class="column side" style="background-color:#aaa;">
+			<div class = "nav" style="height:500px">
+			</div>
+		</div>-->
+		<div id = "stage" class="column middle" style="background-color:#bbb;"></div>
+		<br/><h2 style="text-align: center;">Detailed Analysis (Martini Glass Fork)</h2>
+		<div id = "drilldown_selectors" class="column middle" style="background-color:#bbb;display:flex;height:200px;">
+			<div id = "measure_selector"  align="center" style="width:50%;">
+				<h2>Select Measure</h2>
+				<div id="dropdown-measure"></div>
+			</div>
+			<div id = "year_selector">
+			  <div style="display:flex;">
+				<h2 style="width:40%;">Select Year</h2>
+				<p id="slider-value" style="text-align:center;"></p>
+				</div>
+				<div id="slider-year" align="center"></div>
+  		</div>
+		</div>
+		<div id = "drilldown_stage" class="column middle" style="background-color:#bbb;"></div>
+		<!--<div id= "right" class="column side" style="background-color:#ccc;">
+			<div class = "nav" style="height:500px"></div>
+		</div>
+	</div>-->
+	<div class="footer">
+		<p>CS498:Summer19:Data Visualization Project(7-3-3)     Built By: Krishna Shekhram(ks32@illinois.edu)     Date : August, 4th, 2019</p>
+		<p>Data Source : <a href="https://databank.worldbank.org/reports.aspx?source=world-development-indicators">World Bank's World Development Indicator</a></p>
+	</div>
 </body>
 
-data-alt.csv:
-date,close
-10-May-12,99.55
-8-May-12,76.86
-6-May-12,67.62
-4-May-12,64.48
-2-May-12,60.98
-1-May-12,58.13
-30-Apr-12,53.98
-27-Apr-12,67.00
-26-Apr-12,89.70
-25-Apr-12,99.00
-24-Apr-12,90.28
-23-Apr-12,106.70
-20-Apr-12,94.98
-19-Apr-12,85.44
-18-Apr-12,73.34
-17-Apr-12,53.70
-16-Apr-12,50.13
-13-Apr-12,65.23
-12-Apr-12,62.77
-11-Apr-12,66.20
-10-Apr-12,68.44
-9-Apr-12,66.23
-5-Apr-12,63.68
-4-Apr-12,64.31
-3-Apr-12,69.32
-2-Apr-12,61.63
-
-data.csv:
-date,close
-1-May-12,58.13
-30-Apr-12,53.98
-27-Apr-12,67.00
-26-Apr-12,89.70
-25-Apr-12,99.00
-24-Apr-12,130.28
-23-Apr-12,166.70
-20-Apr-12,234.98
-19-Apr-12,345.44
-18-Apr-12,443.34
-17-Apr-12,543.70
-16-Apr-12,580.13
-13-Apr-12,605.23
-12-Apr-12,622.77
-11-Apr-12,626.20
-10-Apr-12,628.44
-9-Apr-12,636.23
-5-Apr-12,633.68
-4-Apr-12,624.31
-3-Apr-12,629.32
-2-Apr-12,618.63
-30-Mar-12,599.55
-29-Mar-12,609.86
-28-Mar-12,617.62
-27-Mar-12,614.48
-26-Mar-12,606.98
+</html>
