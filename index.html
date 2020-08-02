@@ -98,11 +98,11 @@ var  data1 =  d3.csv("data.csv", function(d) {
 function updateData() {
 
     // Get the data again
-    d3.csv("data-alt.csv", function(error, data) {
-       	data.forEach(function(d) {
-	    	d.date = parseDate(d.date);
-	    	d.close = +d.close;
-	    });
+    var data2 = d3.csv("data-alt.csv", function(d) {
+       	return {
+	    	date : parseDate(d.date);
+	    	close: +d.close;
+	    };
 
     	// Scale the range of the data again
     	x.domain(d3.extent(data, function(d) { return d.date; }));
