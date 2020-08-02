@@ -12,7 +12,7 @@
 <script>
 
 // set the dimensions and margins of the graph
-var margin = {top: 50, right: 30, bottom: 30, left: 60},
+var margin = {top: 20, right: 30, bottom: 60, left: 60},
     width = 860 - margin.left - margin.right,
     height = 800 - margin.top - margin.bottom;
 
@@ -74,7 +74,7 @@ d3.csv("data/GDPdata1.csv",
       .attr("x",0 - (height / 2))
       .attr("dy", "1em")
       .style("text-anchor", "middle")
-      .text("Value");   
+      .text("GDP growth (annual %)");   
     
 
     // Add the line
