@@ -76,10 +76,10 @@ d3.csv("data/GDPdata1.csv",
       .style("text-anchor", "middle")
       .text("GDP growth (annual %)");   
     
-  svg.append("circle").attr("cx",200).attr("cy",130).attr("r", 6).style("fill", "steelblue")
-svg.append("circle").attr("cx",200).attr("cy",160).attr("r", 6).style("fill", "red")
-svg.append("text").attr("x", 220).attr("y", 130).text("East Asia & Pacific").style("font-size", "15px").attr("alignment-bottom","middle")
-svg.append("text").attr("x", 220).attr("y", 160).text("Europe & Central Asia").style("font-size", "15px").attr("alignment-bottom","middle")
+//svg.append("circle").attr("cx",200).attr("cy",130).attr("r", 6).style("fill", "steelblue")
+//svg.append("circle").attr("cx",200).attr("cy",160).attr("r", 6).style("fill", "red")
+//svg.append("text").attr("x", 220).attr("y", 130).text("East Asia & Pacific").style("font-size", "15px").attr("alignment-bottom","middle")
+//svg.append("text").attr("x", 220).attr("y", 160).text("Europe & Central Asia").style("font-size", "15px").attr("alignment-bottom","middle")
 
     // Add the line
     var East = d3.line()
@@ -163,5 +163,32 @@ svg.append("text").attr("x", 220).attr("y", 160).text("Europe & Central Asia").s
       .attr("d", Latin)
 
 })
+    
+    function genderLegend() {
+  // Draw the gender legend
+  var legend = d3.select(".chart").selectAll(".legend")
+      .data(c.domain().slice().reverse())
+    .enter().append("g")
+      .attr("class","legend")
+      .attr("transform",function(d,i) {
+        return "translate(0," + i * 20 + ")";
+      });
+
+  legend.append("rect")
+      .attr("x",475)
+      .attr("y",9)
+      .attr("width",18)
+      .attr("height",18)
+      .style("fill",c);
+
+  legend.append("text")
+      .attr("x",465)
+      .attr("y",18)
+      .attr("dy",".35em")
+      .style("text-anchor","end")
+      .text(function(d) {
+        return d.charAt(0).toUpperCase()+d.slice(1);
+      });
+}
 
 </script>
