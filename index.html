@@ -100,8 +100,8 @@ function updateData() {
     // Get the data again
     var data2 = d3.csv("data-alt.csv", function(d) {
        	return {
-	    	date : parseDate(d.date);
-	    	close: +d.close;
+	    	date : parseDate(d.date),
+	    	close: +d.close
 	    };
 
     	// Scale the range of the data again
