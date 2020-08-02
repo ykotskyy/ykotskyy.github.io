@@ -53,7 +53,7 @@ d3.csv("data/GDPdata1.csv",
     svg.append("g")
       .attr("transform", "translate(0," + height + ")")
       .call(d3.axisBottom(x))
-      .text("Year");
+      //.text("Year");
 
     // Add Y axis
     var y = d3.scaleLinear()
@@ -61,7 +61,7 @@ d3.csv("data/GDPdata1.csv",
       .range([ height, 0 ]);
     svg.append("g")
       .call(d3.axisLeft(y))
-        .text("GDP growth (annual %)");
+       // .text("GDP growth (annual %)");
 
     // Add the line
     var East = d3.line()
