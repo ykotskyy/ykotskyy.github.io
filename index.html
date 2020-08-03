@@ -313,33 +313,7 @@
 			font-size: 15px;
 			text-align:center;
 		}
-		div.tooltip {
-  position: absolute;
-  text-align: center;
-  pointer-events: none;
-  
-  line-height: 1;
-  font-weight: bold;
-  padding: 8px;
-  background: rgba(0, 0, 0, 0.6);
-  color: #fff;
-  border-radius: 2px;
-}
-  
-/* Creates a small triangle extender for the tooltip */
-div.tooltip:after {
-  clear;
-  box-sizing: border-box;
-  display: inline;
-  font-size: 11px;
-  top: 95%;
-  left: 50%;
-  line-height: 1;
-  color: rgba(0, 0, 0, 0.6);
-  content: "\25BC";
-  position: absolute;
-  text-align: center;
-}
+		
 			
 		#popup1{
 			width:90%;
@@ -576,37 +550,7 @@ d3.csv("data/GDPdata1.csv",
       .attr("d", Latin);
 
 	
-function mouseover(d) {
-    var name = d3.select(this).attr("d");
-    
-    // highlight this line, fade other lines
-    d3.selectAll(".line").classed("line--hover", (d, i) => {
-      return (name === d);
-    }).classed("line--fade", (d, i) => {
-      return (name !== d);
-    });
-    
-    // display tooltip
-    div.transition()
-    	.duration(200)
-    	.style("opacity", 1);
-    div.html("accelerometer - " + name)
-    	.style("left", (d3.event.pageX - 70) + "px")
-      .style("top", (d3.event.pageY - 40) + "px");
-  }
-  
-  // mouseout function
-  function mouseout(d) {
-    // turn off hover and fade effects
-    d3.selectAll(".line")
-      .classed("line--hover", false)
-      .classed("line--fade", false);
-    
-    // hide tooltip
-    div.transition()
-    	.duration(500)
-    	.style("opacity", 0);
-  }
+
 	
 }, )
     
