@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-				<meta charset="utf-8">
+	<meta charset="utf-8">
         <script src="https://d3js.org/d3.v4.js"></script>
         <title> Regional GDP Growth (1971-2019) </title>
 	</head>
@@ -403,12 +403,12 @@
 
 
 <script>
-// set the dimensions and margins of the graph
+// set the dimensions
 var margin = {top: 20, right: 30, bottom: 60, left: 60},
     width = 670 - margin.left - margin.right,
     height = 600 - margin.top - margin.bottom;
 
-// append the svg object to the body of the page
+// append the svg 
 var svg = d3.select("#chartarea")
   .append("svg")
     .attr("width", width + margin.left + margin.right)
@@ -420,10 +420,10 @@ var svg = d3.select("#chartarea")
     
 //Read the data
 d3.csv("data/GDPdata1.csv",
-  // When reading the csv, I must format variables:
+  
   function(d){
     return {
-    //  date : d3.timeParse("%Y-%m-%d")(d.date), value : d.value
+    
     Time : d3.timeParse("%Y")(d.Time),
     East_Asia_and_Pacific 	 :  +d.EastAsiaandPacific,
     Europe_and_Central_Asia 	 : +d.EuropeandCentralAsia,
@@ -436,10 +436,10 @@ d3.csv("data/GDPdata1.csv",
         }
   },
 
-  // Now I can use this dataset:
+  // using data
   function(data) {
 
-    // Add X axis --> it is a date format
+    // x axis
     var x = d3.scaleTime()
       .domain(d3.extent(data, function(d) { return d.Time; }))
       .range([ 0, width ]);
@@ -454,7 +454,7 @@ d3.csv("data/GDPdata1.csv",
       .style("text-anchor", "middle")
       .text("Date");
     
-    // Add Y axis
+    //y axis
     var y = d3.scaleLinear()
       .domain([-5, 17])
       .range([ height, 0 ]);
@@ -469,7 +469,7 @@ d3.csv("data/GDPdata1.csv",
       .style("text-anchor", "middle")
       .text("GDP growth (annual %)");   
 
-    // Add the line
+    // Adding 7 lines
     var East = d3.line()
     .x(function(d) { return x(d.Time); })
     .y(function(d) { return y(d.East_Asia_and_Pacific); });
@@ -498,6 +498,7 @@ d3.csv("data/GDPdata1.csv",
     .x(function(d) { return x(d.Time); })
     .y(function(d) { return y(d.Latin_America_and_Caribbean); });
     
+  //coloring lines 
     svg.append("path")
       .datum(data)
       .attr("fill", "none")
