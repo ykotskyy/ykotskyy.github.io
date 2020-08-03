@@ -1,40 +1,398 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
+	<head>
+				<meta charset="utf-8">
         <script src="https://d3js.org/d3.v4.js"></script>
         <title> Regional GDP Growth (1971-2019) </title>
-    </head>
-    <body>
-        <div id="wrapper">
-            <div id="chartarea"></div>
-            <div id="legend"></div>
-        </div>
-    </body>
+	</head>
+	<body>
+		<div id="wrapper">
+			<div class="sub_wrapper">	
+				<div id="chart">
+				</div>
+				<div id="legend">
+					<div class="line_box">
+						<div class="line blue"></div>
+						<div class="line_color">East Asia & Pacific</div>
+					</div>
+					<div class="line_box">
+						<div class="line red"></div>
+						<div class="line_color">Europe & Central Asia</div>
+					</div>
+					<div class="line_box">
+						<div class="line green"></div>
+						<div class="line_color">Middle East & North Africa</div>
+
+					</div>
+					<div class="line_box">
+						<div class="line orange"></div>
+						<div class="line_color">North America</div>
+
+					</div>
+					<div class="line_box">
+						<div class="line gray"></div>
+						<div class="line_color">South Asia</div>
+
+					</div>
+					<div class="line_box">
+						<div class="line purple"></div>
+						<div class="line_color">Sub-saharan Africa</div>
+					</div>
+					<div class="line_box">
+						<div class="line"></div>
+						<div class="line_color">Latin America & Caribean</div>
+					</div>
+				</div>
+			</div>
+			<div class="sub_wrapper">
+				<div id="button_box">
+					<div class="one" 
+					onmouseover="document.getElementById('popup1').style.display = 'block';
+										   document.getElementById('txt1').style.display = 'block';"
+					onmouseout="document.getElementById('popup1').style.display = 'none';
+										 document.getElementById('txt1').style.display = 'none';">
+					
+					</div>
+					<div class="two" 
+					onmouseover="document.getElementById('popup2').style.display = 'block';
+										   document.getElementById('txt2').style.display = 'block';"
+					onmouseout="document.getElementById('popup2').style.display = 'none';
+										 document.getElementById('txt2').style.display = 'none';">
+					
+					</div>
+					<div class="three" 
+					onmouseover="document.getElementById('popup3').style.display = 'block';
+										   document.getElementById('txt3').style.display = 'block';"
+					onmouseout="document.getElementById('popup3').style.display = 'none';
+										 document.getElementById('txt3').style.display = 'none';">
+					
+					</div>
+					<div class="four" 
+					onmouseover="document.getElementById('popup4').style.display = 'block';
+										   document.getElementById('txt4').style.display = 'block';"
+					onmouseout="document.getElementById('popup4').style.display = 'none';
+										 document.getElementById('txt4').style.display = 'none';">
+					
+					</div>
+					<div class="five" 
+					onmouseover="document.getElementById('popup5').style.display = 'block';
+										   document.getElementById('txt5').style.display = 'block';"
+					onmouseout="document.getElementById('popup5').style.display = 'none';
+										 document.getElementById('txt5').style.display = 'none';">
+					
+					</div>
+					<div class="six" 
+					onmouseover="document.getElementById('popup6').style.display = 'block';
+										   document.getElementById('txt6').style.display = 'block';"
+					onmouseout="document.getElementById('popup6').style.display = 'none';
+										 document.getElementById('txt6').style.display = 'none';">
+					
+					</div>
+					<div class="seven" 
+					onmouseover="document.getElementById('popup7').style.display = 'block';
+										   document.getElementById('txt7').style.display = 'block';"
+					onmouseout="document.getElementById('popup7').style.display = 'none';
+										 document.getElementById('txt7').style.display = 'none';">
+					
+					</div>
+					
+				</div>
+				<div class="popup_wrapper">
+					<div id="popup1">
+						<div id="txt1">
+							one
+						</div>
+					</div>
+					<div id="popup2">
+						<div id="txt2">
+							two
+						</div>
+					</div>
+					<div id="popup3">
+						<div id="txt3">
+							three
+						</div>
+					</div>
+					<div id="popup4">
+						<div id="txt4">
+							four
+						</div>
+					</div>
+					<div id="popup5">
+						<div id="txt5">
+							five
+						</div>
+					</div>
+					<div id="popup6">
+						<div id="txt6">
+							six
+						</div>
+					</div>
+					<div id="popup7">
+						<div id="txt7">
+							seven
+						</div>
+					</div>
+					
+					
+				</div>
+			</div>
+		</div>
+	</body>
+	<style>
+		body{background-color:yellow}
+		#wrapper{
+			display:block;
+			float:left;
+			background-color:grey;
+			width:90%;
+			margin-left:2%;
+			border:1px solid black;
+			padding:3%;
+		}
+		.sub_wrapper{
+			display:block;
+			float:left;
+			width:50%;
+			
+		}
+		#chart{
+			display:block;
+			float:left;
+			width:100%;
+			height:600px;
+			border:1px solid black;
+			background-color:white;
+			
+		}
+		#legend{
+			display:block;
+			float:left;
+			width:80%;
+			height:120px;
+			border:1px solid black;
+			margin-left:10%;
+			margin-top:10px;
+			background-color:white;
+		}
+		.line_box{
+			display:block;
+			float:left;
+			width:130px;
+			margin-left:5px;
+			margin-top:10px;
+			padding:1px;
+		}
+		.line{
+			float:left;
+			display:inline;
+			width:25%;
+			height:0px;
+			margin-top:6px;
+			margin-right: 15px;
+			border:1px solid black;
+		}
+		.blue{border:1px solid blue;}
+		.red{border:1px solid red;}
+		.green{border:1px solid green;}
+		.purple{border:1px solid purple;}
+		.gray{border:1px solid gray;}
+		.orange{border:1px solid orange;}
+		
+		.line_color{
+			width:70%;
+			margin-top:-7px;
+			display:inline;
+			float:right;
+			font-size:10px;		
+		}
+		
+		#button_box{
+			display:block;
+			float:left;
+			width:90%;
+			margin-left:5%;
+			height:300px;
+			border:1px solid black;
+			background-color:white;
+			margin-bottom:20px;
+		}
+		
+		.popup_wrapper{
+			display:block;
+			float:left;
+			width:90%;
+			margin-left:5%;
+			height:400px;
+			border:1px solid black;
+			background-color:white;
+		}
+		
+		.one{
+			display:block;
+			float:left;
+			width:130px;
+			height:30px;
+			border:1px solid black;
+			margin-left:10px;
+			margin-top:10px;
+			font-size: 15px;
+			text-align:center;
+		}
+		.two{
+			display:block;
+			float:left;
+			width:130px;
+			height:30px;
+			border:1px solid black;
+			margin-left:10px;
+			margin-top:10px;
+			font-size: 15px;
+			text-align:center;
+		}
+		.three{
+			display:block;
+			float:left;
+			width:130px;
+			height:30px;
+			border:1px solid black;
+			margin-left:10px;
+			margin-top:10px;
+			font-size: 15px;
+			text-align:center;
+		}
+		.four{
+			display:block;
+			float:left;
+			width:130px;
+			height:30px;
+			border:1px solid black;
+			margin-left:10px;
+			margin-top:10px;
+			font-size: 15px;
+			text-align:center;
+		}
+		.five{
+			display:block;
+			float:left;
+			width:130px;
+			height:30px;
+			border:1px solid black;
+			margin-left:10px;
+			margin-top:10px;
+			font-size: 15px;
+			text-align:center;
+		}
+		.six{
+			display:block;
+			float:left;
+			width:130px;
+			height:30px;
+			border:1px solid black;
+			margin-left:10px;
+			margin-top:10px;
+			font-size: 15px;
+			text-align:center;
+		}
+		.seven{
+			display:block;
+			float:left;
+			width:130px;
+			height:30px;
+			border:1px solid black;
+			margin-left:10px;
+			margin-top:10px;
+			font-size: 15px;
+			text-align:center;
+		}
+		
+			
+		#popup1{
+			width:90%;
+			margin-left:5%;
+			height:90%;
+			margin-top:5%;
+			border:1px solid blue;
+			background-color:#F0F6FF;
+			display:none;
+		}
+		#popup2{
+			width:90%;
+			margin-left:5%;
+			height:90%;
+			margin-top:5%;
+			border:1px solid red;
+			background-color:#FFF0F0;
+			display:none;
+		}
+		#popup3{
+			width:90%;
+			margin-left:5%;
+			height:90%;
+			margin-top:5%;
+			border:1px solid green;
+			background-color:#F2FFF0;
+			display:none;
+		}
+		#popup4{
+			width:90%;
+			margin-left:5%;
+			height:90%;
+			margin-top:5%;
+			border:1px solid orange;
+			background-color:#FFFFF0;
+			display:none;
+		}
+		#popup5{
+			width:90%;
+			margin-left:5%;
+			height:90%;
+			margin-top:5%;
+			border:1px solid grey;
+			background-color:#FFFFF0;
+			display:none;
+		}
+		#popup6{
+			width:90%;
+			margin-left:5%;
+			height:90%;
+			margin-top:5%;
+			border:1px solid purple;
+			background-color:#F9F0FF;
+			display:none;
+		}
+		#popup7{
+			width:90%;
+			margin-left:5%;
+			height:90%;
+			margin-top:5%;
+			border:1px solid black;
+			background-color:#F6F6F6;
+			display:none;
+		}
+		
+		#txt1{}
+		#txt2{}
+		#txt3{}
+		#txt4{}
+		#txt5{}
+		#txt6{}
+		#txt7{}
+		
+	
+		
+		
+		@media only screen and (max-width: 900px){
+			.sub_wrapper{width:100%; margin-bottom:20px;}
+		}
+		
+	</style>
 </html>
 
+<script>
 
-<style>
-    body{backgroud-color:grey;}
-    #wrapper{
-        width:90%;
-        margin-left:5%;
-        display:block;
-        float:left;
-    }
-    #legend{
-        float:left; 
-        display:block; 
-        border:1px solid black; 
-        height:200px; 
-        width:700px; 
-        background-color:white;
-        box-shadow: 5px 5px 0px 0px;
-    }
-    #chartarea{float:left; display:block; }
-    
-    
-</style>
+</script>
+
 
 <script>
 // set the dimensions and margins of the graph
