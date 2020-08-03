@@ -549,9 +549,45 @@ d3.csv("data/GDPdata1.csv",
       .attr("stroke", "black")
       .attr("stroke-width", 1.5)
       .attr("d", Latin);
+	
+     svg.call(hover,path);
 
 }, )
     
+function hover(svg, path) {
+  
+  if ("ontouchstart" in document) svg
+      .style("-webkit-tap-highlight-color", "transparent")
+      .on("touchmove", moved)
+      .on("touchstart", entered)
+      .on("touchend", left)
+  else svg
+      .on("mousemove", moved)
+      .on("mouseenter", entered)
+      .on("mouseleave", left);
 
+  const dot = svg.append("g")
+      .attr("display", "none");
+
+  dot.append("circle")
+      .attr("r", 2.5);
+
+  dot.append("text")
+      .attr("font-family", "sans-serif")
+      .attr("font-size", 10)
+      .attr("text-anchor", "middle")
+      .attr("y", -8);
+
+  
+  function entered() {
+    path.style("mix-blend-mode", null).attr("stroke", "#ddd");
+    dot.attr("display", null);
+  }
+
+  function left() {
+    path.style("mix-blend-mode", "multiply").attr("stroke", null);
+    dot.attr("display", "none");
+  }
+}
 
 </script>
