@@ -4,7 +4,7 @@
   <script src="https://d3js.org/d3.v6.min.js"></script>
   <title> Stock Chart in D3 </title>
 
-  <!--<div id="chart-element" style="height: 500px"></div> -->
+  <div id="chart-element" style="height: 500px"></div>
 </head>
 
 
@@ -45,7 +45,7 @@ const initialiseChart = data => {
 
   // add chart SVG to the page
   const svg = d3
-    .select('#chart')
+    .select('#chart-element')
     .append('svg')
     .attr('width', width + margin['left'] + margin['right'])
     .attr('height', height + margin['top'] + margin['bottom'])
