@@ -142,7 +142,7 @@ const initialiseChart = data => {
      const bisectDate = d3.bisector(d => d.date).left;
      function generateCrosshair() {
        //returns corresponding value from the domain
-       const correspondingDate = xScale.invert(d3.pointer(this)[0]);
+       const correspondingDate = xScale.invert(d3.pointer(event,this)[0]);
        //gets insertion point
        const i = bisectDate(data, correspondingDate, 1);
        const d0 = data[i - 1];
