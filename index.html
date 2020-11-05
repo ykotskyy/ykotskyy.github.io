@@ -27,7 +27,7 @@ body {
 // All the JavaScript is here
 const loadDataEndOfDay = d3.csv("data/aal_test.csv", d => ({
   date: new Date(d.Date),
-  volume: Number(d.volume),
+  volume: Number(d.Volume),
   high: Number(d.High),
   low: Number(d.Low),
   open: Number(d.Open),
@@ -191,6 +191,45 @@ const initialiseChart = data => {
             .style('fill', 'white')
             .attr('transform', 'translate(15,9)');
           };
+          /* Volume series bars */
+            const volData = data.filter(d => d['volume'] !== null && d['volume'] !== 0);
+
+            const yMinVolume = d3.min(volData, d => {
+              return Math.min(d['volume']);
+            });
+
+            const yMaxVolume = d3.max(volData, d => {
+              return Math.max(d['volume']);
+            });
+
+            const yVolumeScale = d3
+              .scaleLinear()
+              .domain([yMinVolume, yMaxVolume])
+              .range([height, height * (3 / 4)]);
+
+            svg
+              .selectAll()
+              .data(volData)
+              .enter()
+              .append('rect')
+              .attr('x', d => {
+                return xScale(d['date']);
+              })
+              .attr('y', d => {
+                return yVolumeScale(d['volume']);
+              })
+              .attr('class', 'vol')
+              .attr('fill', (d, i) => {
+                if (i === 0) {
+                  return '#03a678';
+                } else {
+                  return volData[i - 1].close > d.close ? '#c0392b' : '#03a678'; // green bar if price is rising during that period, and red when price  is falling
+                }
+              })
+              .attr('width', 1)
+              .attr('height', d => {
+                return height - yVolumeScale(d['volume']);
+              });
 
 };
 
