@@ -14,10 +14,6 @@
 body {
   background: #00151c;
 }
-#chart {
-  background: #0e3040;
-  color: #67809f;
-}
 </style>
 
 
@@ -29,7 +25,8 @@ const loadDataEndOfDay = d3.csv("data/aal_test.csv", d => ({
   high: Number(d.High),
   low: Number(d.Low),
   open: Number(d.Open),
-  adjclose: Number(d.AdjClose),
+  close: Number(d.Close),
+//adjclose: Number(d.),
   symbol: (d.Name)
 
 }));
@@ -64,11 +61,11 @@ const initialiseChart = data => {
   });
 
   const yMin = d3.min(data, d => {
-    return d['adjclose'];
+    return d['close'];
   });
 
   const yMax = d3.max(data, d => {
-    return d['adjclose'];
+    return d['close'];
   });
 
   // scale using range
@@ -102,7 +99,7 @@ const initialiseChart = data => {
         return xScale(d['date']);
       })
       .y(d => {
-        return yScale(d['adjclose']);
+        return yScale(d['close']);
       });
     // Append the path and bind data
     svg
