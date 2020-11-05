@@ -246,6 +246,26 @@ const initialiseChart = data => {
                   };
                 });
               };
+
+  // calculates simple moving average over 50 days
+  const movingAverageData = movingAverage(data, 49);
+  // generates moving average curve when called
+  const movingAverageLine = d3
+   .line()
+   .x(d => {
+    return xScale(d['date']);
+   })
+   .y(d => {
+    return yScale(d['average']);
+   })
+    .curve(d3.curveBasis);
+  svg
+    .append('path')
+    .data([movingAverageData])
+    .style('fill', 'none')
+    .attr('id', 'movingAverageLine')
+    .attr('stroke', '#FF8900')
+    .attr('d', movingAverageLine);
 };
 
 
