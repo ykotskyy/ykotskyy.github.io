@@ -8,7 +8,7 @@
 </head>
 
 <body>
-
+</body>
 
 
 <style>
@@ -47,7 +47,7 @@ const initialiseChart = data => {
 
   // add chart SVG to the page
   const svg = d3
-    .select('#chart-element')
+    .select('#chart')
     .append('svg')
     .attr('width', width + margin['left'] + margin['right'])
     .attr('height', height + margin['top'] + margin['bottom'])
@@ -148,4 +148,3 @@ const responsivefy = svg => {
   d3.select(window).on('resize.' + container.attr('id'), resize);
 };
  </script>
-</body>
