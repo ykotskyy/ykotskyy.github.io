@@ -43,6 +43,17 @@ const initialiseChart = data => {
   const width = window.innerWidth - margin.left - margin.right; // Use the window's width
   const height = window.innerHeight - margin.top - margin.bottom; // Use the window's height
 
+  // add chart SVG to the page
+  const svg = d3
+    .select('#chart')
+    .append('svg')
+    .attr('width', width + margin['left'] + margin['right'])
+    .attr('height', height + margin['top'] + margin['bottom'])
+    //.call(responsivefy)
+    .append('g')
+    .attr('transform', `translate(${margin['left']}, ${margin['top']})`);
+
+
   // find data range
   const xMin = d3.min(data, d => {
     return d['date'];
@@ -71,15 +82,6 @@ const initialiseChart = data => {
     .domain([yMin - 5, yMax])
     .range([height, 0]);
 
-  // add chart SVG to the page
-  const svg = d3
-    .select('#chart')
-    .append('svg')
-    .attr('width', width + margin['left'] + margin['right'])
-    .attr('height', height + margin['top'] + margin['bottom'])
-    //.call(responsivefy)
-    .append('g')
-    .attr('transform', `translate(${margin['left']}, ${margin['top']})`);
 
   // create the axes component
   svg
@@ -93,6 +95,24 @@ const initialiseChart = data => {
     .attr('id', 'yAxis')
     .attr('transform', `translate(${width}, 0)`)
     .call(d3.axisRight(yScale));
+
+    const line = d3
+      .line()
+      .x(d => {
+        return xScale(d['date']);
+      })
+      .y(d => {
+        return yScale(d['adjclose']);
+      });
+    // Append the path and bind data
+    svg
+     .append('path')
+     .data([data])
+     .style('fill', 'none')
+     .attr('id', 'priceChart')
+     .attr('stroke', 'steelblue')
+     .attr('stroke-width', '1.5')
+     .attr('d', line);
 
 }
  </script>
