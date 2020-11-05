@@ -165,7 +165,81 @@ const initialiseChart = data => {
       updateLegends(currentPoint);
      }
 
-}
+     /* Legends */
+      const updateLegends = currentData => {
+        d3.selectAll('.lineLegend').remove();
+
+        const legendKeys = Object.keys(data[0]);
+        const lineLegend = svg
+          .selectAll('.lineLegend')
+          .data(legendKeys)
+          .enter()
+          .append('g')
+          .attr('class', 'lineLegend')
+          .attr('transform', (d, i) => {
+            return `translate(0, ${i * 20})`;
+          });
+        lineLegend
+          .append('text')
+          .text(d => {
+            if (d === 'date') {
+              return `${d}: ${currentData[d].toLocaleDateString()}`;
+            } else if (
+              d === 'high' ||
+              d === 'low' ||
+              d === 'open' ||
+              d === 'close'
+            ) {
+              return `${d}: ${currentData[d].toFixed(2)}`;
+            } else {
+              return `${d}: ${currentData[d]}`;
+            }
+          })
+          .style('fill', 'white')
+          .attr('transform', 'translate(15,9)'); //align texts with boxes
+      };
+
+      /* Volume series bars */
+      const volData = data.filter(d => d['volume'] !== null && d['volume'] !== 0);
+
+      const yMinVolume = d3.min(volData, d => {
+        return Math.min(d['volume']);
+      });
+
+      const yMaxVolume = d3.max(volData, d => {
+        return Math.max(d['volume']);
+      });
+
+      const yVolumeScale = d3
+        .scaleLinear()
+        .domain([yMinVolume, yMaxVolume])
+        .range([height, height * (3 / 4)]);
+
+      svg
+        .selectAll()
+        .data(volData)
+        .enter()
+        .append('rect')
+        .attr('x', d => {
+          return xScale(d['date']);
+        })
+        .attr('y', d => {
+          return yVolumeScale(d['volume']);
+        })
+        .attr('class', 'vol')
+        .attr('fill', (d, i) => {
+          if (i === 0) {
+            return '#03a678';
+          } else {
+            return volData[i - 1].close > d.close ? '#c0392b' : '#03a678'; // green bar if price is rising during that period, and red when price  is falling
+          }
+        })
+        .attr('width', 1)
+        .attr('height', d => {
+          return height - yVolumeScale(d['volume']);
+        });
+
+};
 
 
  </script>
