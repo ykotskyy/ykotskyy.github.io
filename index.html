@@ -9,96 +9,11 @@
 <body>
   <div id="chart">
     <script>
-  //    graphData();
-  </script>
-  </div>
-</body>
-
-
-<style>
-body {
-  background: #00151c;
-}
-
-#chart {
-  background: #0e3040;
-  color: #67809f;
-
-}
-
-</style>
-
-
-<script>
-  // const bodyParser = require("body-parser");
-// var mysql = require('mysql');
-
-// const fs = require('fs');
-
-// var con = mysql.createConnection({
-//   host: "localhost",
-//   user: "moneytalk_tliber2",
-//  password: "Car42758663",
-//   database: "moneytalk_test"
-// });
-
-// con.connect(function(err) {
-//   if (err) throw err;
-//   console.log("Connected to MySQL!");
-// });
-
-// async function getStockData(string) {
-
-//   var sql = `SELECT * FROM teststock WHERE ticker = '${string}'`;
-//   var toReturn;
-
-//   //console.log("${dateIN}, ${highIN}, ${lowIN}, ${openIN}, ${closeIN}, ${volumeIN}, ${adjCloseIN}, ${tickerIN}");
-
-//   console.log(sql);
-
-//   con.query(sql, function (err, result) {
-//     if (err) throw err;
-//     //console.log(result.affectedRows + " record(s) updated");
-//     console.log(result);
-//     // await toReturn = result;
-//   });
-
-// const jsonData = JSON.parse(JSON.stringify(toReturn));
-// console.log("jsonData", jsonData);
-
-
-
-
-//    //  return toReturn;
-
-//  below is to turn it into JSON, but i dont think we need to.
-
-//   var inputArr = toReturn.split(",");
-
-//   var dateIN = inputArr[0];
-//   var highIN = inputArr[1];
-//   var lowIN = inputArr[2];
-//   var openIN = inputArr[3];
-//   var closeIN = inputArr[4];
-//   var volumeIN = inputArr[5];
-//   var adjCloseIN = inputArr[6];
-//   var tickerIN = inputArr[7];
-
-//   var obj = JSON.parse("{ 'date':'${dateIN}', 'high': ${highIN}, 'low':${lowIN}, 'open':${openIN}, 'close':${closeIN}, 'volume':${volumeIN}, 'adjClose':${adjCloseIN}, 'ticker':${tickerIN}}'");
-
-//   console.log(obj);
-
-  //return obj;
-// };
-
-
-// var ticker = "";
-
-// const loadDataEndOfDay = getStockData(ticker);
-
-
-//  function graphData(){
-    console.log("made it to graph data");
+      // self executing function here
+      (function() {
+         // your page initialization code here
+         // the DOM will be available here
+         console.log("made it to graph data");
     // All the JavaScript is here
 const loadDataEndOfDay = d3.csv("data/aal_test.csv", d => ({
   date: new Date(d.Date),
@@ -342,9 +257,99 @@ const initialiseChart = data => {
     .attr('stroke', '#FF8900')
     .attr('d', movingAverageLine);
 };
+      })();
+      </script>
+  </div>
+</body>
 
 
-  //}
+<style>
+body {
+  background: #00151c;
+}
+
+#chart {
+  background: #0e3040;
+  color: #67809f;
+
+}
+
+</style>
+
+
+<script>
+  // const bodyParser = require("body-parser");
+// var mysql = require('mysql');
+
+// const fs = require('fs');
+
+// var con = mysql.createConnection({
+//   host: "localhost",
+//   user: "moneytalk_tliber2",
+//  password: "Car42758663",
+//   database: "moneytalk_test"
+// });
+
+// con.connect(function(err) {
+//   if (err) throw err;
+//   console.log("Connected to MySQL!");
+// });
+
+// async function getStockData(string) {
+
+//   var sql = `SELECT * FROM teststock WHERE ticker = '${string}'`;
+//   var toReturn;
+
+//   //console.log("${dateIN}, ${highIN}, ${lowIN}, ${openIN}, ${closeIN}, ${volumeIN}, ${adjCloseIN}, ${tickerIN}");
+
+//   console.log(sql);
+
+//   con.query(sql, function (err, result) {
+//     if (err) throw err;
+//     //console.log(result.affectedRows + " record(s) updated");
+//     console.log(result);
+//     // await toReturn = result;
+//   });
+
+// const jsonData = JSON.parse(JSON.stringify(toReturn));
+// console.log("jsonData", jsonData);
+
+
+
+
+//    //  return toReturn;
+
+//  below is to turn it into JSON, but i dont think we need to.
+
+//   var inputArr = toReturn.split(",");
+
+//   var dateIN = inputArr[0];
+//   var highIN = inputArr[1];
+//   var lowIN = inputArr[2];
+//   var openIN = inputArr[3];
+//   var closeIN = inputArr[4];
+//   var volumeIN = inputArr[5];
+//   var adjCloseIN = inputArr[6];
+//   var tickerIN = inputArr[7];
+
+//   var obj = JSON.parse("{ 'date':'${dateIN}', 'high': ${highIN}, 'low':${lowIN}, 'open':${openIN}, 'close':${closeIN}, 'volume':${volumeIN}, 'adjClose':${adjCloseIN}, 'ticker':${tickerIN}}'");
+
+//   console.log(obj);
+
+  //return obj;
+// };
+
+
+// var ticker = "";
+
+// const loadDataEndOfDay = getStockData(ticker);
+
+
+  function graphData(){
+
+
+
+  }
 
 
  </script>
