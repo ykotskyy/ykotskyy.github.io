@@ -18,8 +18,6 @@ body {
 #chart {
   background: #0e3040;
   color: #67809f;
-  height: 500px;
-  width: 500px;
 }
 
 </style>
@@ -27,7 +25,7 @@ body {
 
 <script>
 // All the JavaScript is here
-const loadDataEndOfDay = d3.csv("data/aal_test.csv", d => ({
+const loadDataEndOfDay = d3.json("data/sample-data.json", d => ({
   date: new Date(d.Date),
   volume: Number(d.Volume),
   high: Number(d.High),
