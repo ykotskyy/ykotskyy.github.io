@@ -26,21 +26,17 @@ body {
 <script>
 // All the JavaScript is here
 
+const loadDataEndOfDay = d3.json("data/aal_test.json", d => ({
+  date: new Date(d.Date),
+  volume: Number(d.Volume),
+  high: Number(d.High),
+  low: Number(d.Low),
+  open: Number(d.Open),
+  close: Number(d.Close),
+//adjclose: Number(d.),
+  symbol: (d.Name)
 
-
-
-const loadDataEndOfDay = d3.json('data/sample-data.json').then(data => {
-  const chartResultsData = data['chart']['result'][0];
-  const quoteData = chartResultsData['indicators']['quote'][0];
-  return chartResultsData['timestamp'].map((time, index) => ({
-    date: new Date(time * 1000),
-    high: quoteData['high'][index],
-    low: quoteData['low'][index],
-    open: quoteData['open'][index],
-    close: quoteData['close'][index],
-    volume: quoteData['volume'][index]
-  }));
-});
+}));
 
 loadDataEndOfDay.then(data => {
   // render the chart here
