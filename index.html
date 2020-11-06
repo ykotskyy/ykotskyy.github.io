@@ -26,7 +26,7 @@ body {
 <script>
 // All the JavaScript is here
 const loadDataEndOfDay = d3.json("data/sample-data.json", d => ({
-  date: new Date(d.Date),
+  date: new Date(d.timestamp),
   volume: Number(d.Volume),
   high: Number(d.High),
   low: Number(d.Low),
