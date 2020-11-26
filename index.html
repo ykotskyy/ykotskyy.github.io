@@ -22,8 +22,8 @@ const loadDataEndOfDay = d3.csv("data/aal_test.csv", d => ({
   low: Number(d.Low),
   open: Number(d.Open),
   close: Number(d.Close),
-  symbol: (d.Name),
-  comment: String(d.Comments)
+  comment: String(d.Comments),
+  symbol: (d.Name)
 
 }));
 
@@ -75,7 +75,7 @@ const initialiseChart = data => {
     .domain([yMin - 5, yMax])
     .range([height, 0]);
 
-    
+
   // create the axes component
   svg
     .append('g')
@@ -97,20 +97,15 @@ const initialiseChart = data => {
       .y(d => {
         return yScale(d['close']);
       });
-
-
-
     // Append the path and bind data
     svg
      .append('path')
+     .data([data])
      .style('fill', 'none')
      .attr('id', 'priceChart')
      .attr('stroke', 'steelblue')
      .attr('stroke-width', '1.5')
      .attr('d', line);
-
-
-
      // renders x and y crosshair
      const focus = svg
        .append('g')
@@ -127,8 +122,6 @@ const initialiseChart = data => {
        .on('mouseover', () => focus.style('display', null))
        .on('mouseout', () => focus.style('display', 'none'))
        .on('mousemove', generateCrosshair);
-
-
      d3.select('.overlay').style('fill', 'none');
      d3.select('.overlay').style('pointer-events', 'all');
      d3.selectAll('.focus line').style('fill', 'none');
@@ -138,8 +131,6 @@ const initialiseChart = data => {
 
      const bisectDate = d3.bisector(d => d.date).left;
      function generateCrosshair() {
-
-
        //returns corresponding value from the domain
        const correspondingDate = xScale.invert(d3.pointer(event,this)[0]);
        //gets insertion point
