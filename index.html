@@ -97,6 +97,21 @@ const initialiseChart = data => {
       .y(d => {
         return yScale(d['close']);
       });
+
+    // TOOLTIP HERE
+    const Tooltip = d3.select("#chart")
+        .append("div")
+        .style("opacity", 0)
+        .attr("class", "tooltip")
+        .style("background-color", "white")
+        .style("border", "solid")
+        .style("border-width", "2px")
+        .style("border-radius", "5px")
+        .style("padding", "5px")
+
+
+
+
     // Append the path and bind data
     svg
      .append('path')
@@ -122,6 +137,8 @@ const initialiseChart = data => {
        .on('mouseover', () => focus.style('display', null))
        .on('mouseout', () => focus.style('display', 'none'))
        .on('mousemove', generateCrosshair);
+
+
      d3.select('.overlay').style('fill', 'none');
      d3.select('.overlay').style('pointer-events', 'all');
      d3.selectAll('.focus line').style('fill', 'none');
@@ -131,6 +148,11 @@ const initialiseChart = data => {
 
      const bisectDate = d3.bisector(d => d.date).left;
      function generateCrosshair() {
+       Tooltip
+      .html("The exact value of<br>this  is: " + d.Open)
+      .style("left", (d3.mouse(this)[0]+70) + "px")
+      .style("top", (d3.mouse(this)[1]) + "px")
+
        //returns corresponding value from the domain
        const correspondingDate = xScale.invert(d3.pointer(event,this)[0]);
        //gets insertion point
