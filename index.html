@@ -107,8 +107,8 @@ const initialiseChart = data => {
             if(d.Comments) {return "red"}
           })
         //  .attr("stroke", "none")
-          .attr("cx", function(d) { return (d.date) })
-          .attr("cy", function(d) { return (d.close) })
+          .attr("cx", function(d) { return xScale(d.date) })
+          .attr("cy", function(d) { return yScale(d.close) })
 
 
 
