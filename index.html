@@ -149,7 +149,7 @@ const initialiseChart = data => {
      const bisectDate = d3.bisector(d => d.date).left;
      function generateCrosshair() {
        Tooltip
-      .html("The exact value of<br>this  is: " + Open)
+      .html("The exact value of<br>this  is: " + open)
       .style("left", (d3.mouse(this)[0]+70) + "px")
       .style("top", (d3.mouse(this)[1]) + "px")
 
