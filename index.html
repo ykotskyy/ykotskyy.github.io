@@ -82,8 +82,8 @@ const initialiseChart = data => {
            .append("circle")
              .attr("r", 3)
              .attr("fill", function(d) {
-               if(d.Comments) {return "red"}
-               else {return "steelblue"};
+               if(comment) {return "red"}
+               else {return "#0e3040"};
 
              })
            //  .attr("stroke", "none")
