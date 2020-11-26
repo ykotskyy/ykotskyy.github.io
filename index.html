@@ -22,8 +22,8 @@ const loadDataEndOfDay = d3.csv("data/aal_test.csv", d => ({
   low: Number(d.Low),
   open: Number(d.Open),
   close: Number(d.Close),
-  comment: String(d.Comments),
   symbol: (d.Name)
+  Top comment: String(d.Comments),
 
 }));
 
@@ -98,6 +98,17 @@ const initialiseChart = data => {
         return yScale(d['close']);
       });
 
+      svg.selectAll("dot")
+        .data([data])
+        .enter()
+        .append("circle")
+          .attr("r", 3.5)
+          .attr("fill", function(d) {
+            if(d.Comments) {return "red"}
+          })
+        //  .attr("stroke", "none")
+          .attr("cx", function(d) { return x(d.date) })
+          .attr("cy", function(d) { return y(d.close) })
 
 
 
@@ -105,12 +116,13 @@ const initialiseChart = data => {
     // Append the path and bind data
     svg
      .append('path')
-     .data([data])
+
      .style('fill', 'none')
      .attr('id', 'priceChart')
      .attr('stroke', 'steelblue')
      .attr('stroke-width', '1.5')
      .attr('d', line);
+
      // renders x and y crosshair
      const focus = svg
        .append('g')
