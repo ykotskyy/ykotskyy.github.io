@@ -98,30 +98,29 @@ const initialiseChart = data => {
         return yScale(d['close']);
       });
 
-      svg.selectAll("dot")
-        .data([data])
-        .enter()
-        .append("circle")
-          .attr("r", 3.5)
-          .attr("fill", function(d) {
-            if(d.Comments) {return "red"}
-          })
-        //  .attr("stroke", "none")
-          .attr("cx", function(d) { return xScale(d.date) })
-          .attr("cy", function(d) { return yScale(d.close) })
-
-
 
 
     // Append the path and bind data
     svg
      .append('path')
-
      .style('fill', 'none')
      .attr('id', 'priceChart')
      .attr('stroke', 'steelblue')
      .attr('stroke-width', '1.5')
      .attr('d', line);
+
+    svg
+        .selectAll("dot")
+       .data(data)
+       .enter()
+       .append("circle")
+         .attr("r", 3.5)
+         .attr("fill", function(d) {
+           if(d.Comments) {return "red"}
+         })
+       //  .attr("stroke", "none")
+         .attr("cx", function(d) { return xScale(d.date) })
+         .attr("cy", function(d) { return yScale(d.close) })
 
      // renders x and y crosshair
      const focus = svg
