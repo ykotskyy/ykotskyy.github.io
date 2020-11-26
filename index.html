@@ -109,8 +109,8 @@ const initialiseChart = data => {
      .attr('stroke-width', '1.5')
      .attr('d', line);
 
-    svg
-        .selectAll("dot")
+    
+      .selectAll("dot")
        .data(data)
        .enter()
        .append("circle")
