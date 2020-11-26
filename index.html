@@ -22,8 +22,8 @@ const loadDataEndOfDay = d3.csv("data/aal_test.csv", d => ({
   low: Number(d.Low),
   open: Number(d.Open),
   close: Number(d.Close),
-  symbol: (d.Name)
-  comment: String(d.Comments),
+  symbol: (d.Name),
+  comment: String(d.Comments)
 
 }));
 
