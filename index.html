@@ -16,20 +16,19 @@
          console.log("made it to graph data");
     // All the JavaScript is here
 const loadDataEndOfDay = d3.csv("data/aal_test.csv", d => ({
-  d3.csv("data/test.csv", d => ({
-  Nasdaq: (d.NasdaqTraded),
-  Name: (d.SecurityName),
+  d3.csv("data/test.csv", d2 => ({
+  Nasdaq: (d2.NasdaqTraded),
+  Name: (d2.SecurityName),
 
-
-  //comment: String(d.Comments)
-  }));
   date: new Date(d.Date),
   volume: Number(d.Volume),
   high: Number(d.High),
   low: Number(d.Low),
   open: Number(d.Open),
   close: Number(d.Close),
-  symbol: (d.Name)
+  symbol: (d.Name),
+  //comment: String(d.Comments)
+  }));
 }));
 
 loadDataEndOfDay.then(data => {
