@@ -8,25 +8,22 @@
 
 <body>
   <div id="chart">
-    <div id = "info">
-      <p>
-        <script>
-        var extra =
-        d3.csv("data/test.csv", function(data){
-        return data;
-        });
-        console.log(extra);
-         //d3.csv("data/test.csv").then(function(data) {
+  <div id = "info">
+    <script>
+    var extra =
+    d3.csv("data/test.csv", function(data){
+    return data;
+    });
+    console.log(extra);
 
-          //});
+    d3.select("info")
+                     .selectAll("p")
+                     .data(extra)
+                     .enter()
+                     .append("p");
+    </script>
+  </div>
 
-         d3.select("info")
-                          .selectAll("p")
-                          .data(extra)
-                          .enter()
-                          .append("p");
-        </script>
-      </p>
     <script>
       // self executing function here
       (function() {
@@ -34,9 +31,22 @@
          // the DOM will be available here
          console.log("made it to graph data");
     // All the JavaScript is here
+//var extra =
+//d3.csv("data/test.csv", function(data){
+//return data;
+//});
+//console.log(extra);
+ //d3.csv("data/test.csv").then(function(data) {
 
+  //});
 
+ //d3.select("info")
+  //                .selectAll("p")
+    //              .data(extra)
+      //            .enter()
+        //          .append("p");
                 //  .text(function(d){ return "This is data element #" + d; });
+
 
 const loadDataEndOfDay = d3.csv("data/aal_test.csv", d => ({
   date: new Date(d.Date),
