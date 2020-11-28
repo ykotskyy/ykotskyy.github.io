@@ -177,6 +177,7 @@ const initialiseChart = data => {
     }
 
 
+
     const updateLegends = currentData => {
         d3.selectAll('.lineLegend').remove();
           const legendKeys = Object.keys(data[0]);
@@ -203,6 +204,13 @@ const initialiseChart = data => {
             .style('fill', 'white')
             .attr('transform', 'translate(15,9)');
           };
+
+          legend = svg.append("g")
+         .attr("class","legend")
+         .attr("transform","translate(50,30)")
+         .style("font-size","12px")
+         .call(d3.legend)
+         
           /* Volume series bars */
             const volData = data.filter(d => d['volume'] !== null && d['volume'] !== 0);
 
