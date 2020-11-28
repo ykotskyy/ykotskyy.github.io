@@ -21,8 +21,9 @@
                      .selectAll("info")
                      .data(extra)
                      .enter()
-                     .append("info");
-                     .text(function(d){ return "This is data element #" + d; });
+                     .append("info")
+                     .text(function(d){
+                        return d; });
     </script>
   </div>
 
