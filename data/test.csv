@@ -1,2 +1,2 @@
-﻿NasdaqTraded,Symbol,Security Name,Listing Exchange,Market Category,ETF,Financial Status,CQS Symbol,NASDAQ Symbol,NextShares
-Y,AAL,"American Airlines Group, Inc. - Common Stock",Q,Q,N,N,,AAL,N
+﻿Nasdaq_Traded,Security_Name,Listing_Exchange,Market_Category,ETF,Financial_Status,CQS_Symbol,NASDAQ_Symbol,NextShares
+Y,"American Airlines Group, Inc. - Common Stock",Q,Q,N,N,,AAL,N
