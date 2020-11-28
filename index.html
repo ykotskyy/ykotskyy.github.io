@@ -9,21 +9,6 @@
 <body>
   <div id="info"></div>
   <script>
-  //var extra = d3.csv("data/test.csv").then(function(data){
-  //console.log(data);
-  //return data;
-  //});
-
-  //var table = d3.select('info').append('table');
-  //table.append()
-  //info.append()
-    //               .selectAll("info")
-      //             .data(extra)
-        //           .enter()
-          //         .append("info")
-            //       .text(function(d){
-              //        return d; });
-
               d3.csv("data/test.csv", function(data) {
                   // the columns you'd like to display
                     var columns = ["Nasdaq_Traded", "Security_Name","Listing_Exchange","Market_Category","ETF","Financial_Status","CQS_Symbol","NASDAQ_Symbol", "NextShares"];
@@ -60,7 +45,6 @@
 
   <div id="chart">
     <script>
-
       // self executing function here
       (function() {
          // your page initialization code here
@@ -378,7 +362,7 @@ body {
   display:block;
   float:center;
   width:85%;
-  height:500px;
+  height:100;
   border:2px solid white;
   margin-left:10%;
   margin-bottom:10px;
