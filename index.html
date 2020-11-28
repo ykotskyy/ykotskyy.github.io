@@ -24,7 +24,8 @@
                }));
                   // the columns you'd like to display
                     //var columns = ["Nasdaq_Traded", "Security_Name","Listing_Exchange","Market_Category","ETF","Financial_Status","CQS_Symbol","NASDAQ_Symbol", "NextShares"];
-                    var dataHeader = extradata.slice(1,extradata.length);
+                    var dataHeader = Array.isArray(extradata) ? extradata.slice() : [];
+                  //  extradata.slice(1,extradata.length);
                     var titles = extradata[0];
 
                     var table = d3.select("#info")
