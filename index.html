@@ -27,10 +27,12 @@ d3.csv("data/test.csv", function(data){
   //});
 
   var p = d3.select("info")
-                  .selectAll("info")
+                  .selectAll("span")
                   .data(extra)
+                  .enter()
+                  .append("span")
                   .text(function (d) {
-                      return d;
+                      return d + " ";
                   });
 
 const loadDataEndOfDay = d3.csv("data/aal_test.csv", d => ({
