@@ -12,7 +12,7 @@
             function tabulate() {
 
 
-              var extradata = d3.csv("data/test.csv", function(d) ({
+              var extradata = d3.csv("data/test.csv", d => ({
                  Nasdaq: String(d.Nasdaq_Traded),
                  Name: String(d.Security_Name),
                  Exchange:String(d.Market_Category),
