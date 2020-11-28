@@ -18,7 +18,7 @@
     // All the JavaScript is here
 var extra = d3.csv("data/test.csv", d => {
   Nasdaq: (d.NasdaqTraded),
-  Name: (d.SecurityName),
+  Name: (d.SecurityName)
   });
 
   var p = d3.select("info")
@@ -36,7 +36,7 @@ const loadDataEndOfDay = d3.csv("data/aal_test.csv", d => ({
   open: Number(d.Open),
   close: Number(d.Close),
   symbol: (d.Name),
-  //comment: String(d.Comments)
+  comment: String(d.Comments)
 
 }));
 
