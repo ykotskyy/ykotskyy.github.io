@@ -10,11 +10,22 @@
   <div id="info"></div>
   <script>
             function tabulate() {
-              d3.csv("data/test.csv", function(data) {
+
+
+              var extradata = d3.csv("data/test.csv", function(d) ({
+                 Nasdaq: String(d.Nasdaq_Traded),
+                 Name: String(d.Security_Name),
+                 Exchange:String(d.Market_Category),
+                 ETF:(d.ETF),
+                 Status:String(d.Financial_Status),
+                 CQS:String(d.CQS_Symbol),
+                 NASDAQ_:(d.NASDAQ_),
+                 NextShares:(d.NextShares)
+               }));
                   // the columns you'd like to display
                     //var columns = ["Nasdaq_Traded", "Security_Name","Listing_Exchange","Market_Category","ETF","Financial_Status","CQS_Symbol","NASDAQ_Symbol", "NextShares"];
-                    var dataHeader = data.slice(1,data.length);
-                    var titles = data[0];
+                    var dataHeader = extradata.slice(1,extradata.length);
+                    var titles = extradata[0];
 
                     var table = d3.select("#info")
                     .append("table")
@@ -58,7 +69,7 @@
                                                   return d.name;
                                                       })
                                                 .text(function(d) { return d.value; });
-                                    });
+
                                   }
                                   tabulate();
   </script>
