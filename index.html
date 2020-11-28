@@ -6,15 +6,17 @@
   <title> MoneyTalk </title>
 </head>
 
+
+
 <body>
-  <div id="info">
+  <div id="info"></div>
   <script>
 
 
   d3.text("data/test.csv", function(data) {
         var parsedCSV = d3.csv.parseRows(data);
 
-        var container = d3.select("info")
+        var container = d3.select("#info")
             .append("table")
 
             .selectAll("tr")
@@ -27,7 +29,7 @@
                 .text(function(d) { return d; });
     });
   </script>
-</div>
+
   <div id="chart">
     <script>
       // self executing function here
