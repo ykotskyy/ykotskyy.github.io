@@ -27,7 +27,7 @@ d3.csv("data/test.csv", function(data){
   //});
 
   var p = d3.select("info")
-                  .selectAll("p")
+                  .selectAll("info")
                   .data(extra)
                   .text(function (d) {
                       return d;
@@ -333,6 +333,7 @@ body {
   margin-bottom:10px;
   bottom:10px;
   background-color:steelblue;
+
 }
 </style>
 
