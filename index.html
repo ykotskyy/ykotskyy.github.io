@@ -7,14 +7,14 @@
 </head>
 
 <body>
-  <div id="info"></div>
+  <div id="info">
   <script>
 
 
   d3.text("data/test.csv", function(data) {
         var parsedCSV = d3.csv.parseRows(data);
 
-        var container = d3.select("body")
+        var container = d3.select("info")
             .append("table")
 
             .selectAll("tr")
@@ -27,7 +27,7 @@
                 .text(function(d) { return d; });
     });
   </script>
-</body>
+</div>
   <div id="chart">
     <script>
       // self executing function here
