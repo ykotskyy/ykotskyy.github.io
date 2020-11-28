@@ -8,6 +8,7 @@
 
 <body>
   <div id="chart">
+    <div id = "info">
     <script>
       // self executing function here
       (function() {
@@ -18,8 +19,9 @@
 const extra = d3.csv("data/test.csv", d2 => ({
   Nasdaq: (d2.NasdaqTraded),
   Name: (d2.SecurityName),
-
   }));
+
+
 
 const loadDataEndOfDay = d3.csv("data/aal_test.csv", d => ({
   date: new Date(d.Date),
@@ -306,6 +308,16 @@ body {
 
 }
 
+#legend{
+  display:block;
+  float:left;
+  width:80%;
+  height:120px;
+  border:1px solid black;
+  margin-left:10%;
+  margin-top:10px;
+  background-color:white;
+}
 </style>
 
 
