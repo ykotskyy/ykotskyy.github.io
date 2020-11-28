@@ -9,7 +9,7 @@
 <body>
   <div id="info"></div>
   <script>
-            function tabulate(data, columns) {
+            function tabulate() {
               d3.csv("data/test.csv", function(data) {
                   // the columns you'd like to display
                     var columns = ["Nasdaq_Traded", "Security_Name","Listing_Exchange","Market_Category","ETF","Financial_Status","CQS_Symbol","NASDAQ_Symbol", "NextShares"];
@@ -42,7 +42,7 @@
                                             .append("td")
                                                 .text(function(d) { return d.value; });
                                     });
-                                    return table;
+
                                   }
   </script>
 
