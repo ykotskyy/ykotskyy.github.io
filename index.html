@@ -10,7 +10,8 @@
   <div id="chart">
   <div id = "info">
     <script>
-    var extra = d3.csv("data/test.csv").then(function(data)){
+    var extra = d3.csv("data/test.csv").then(function(data){
+    console.log(data);
     return data;
     });
 
