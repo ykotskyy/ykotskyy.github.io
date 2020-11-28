@@ -32,8 +32,8 @@ console.log(extra);
                   .selectAll("p")
                   .data(extra)
                   .enter()
-                  .append("p")
-                  .text(function(d){ return "This is data element #" + d; });
+                  .append("p");
+                //  .text(function(d){ return "This is data element #" + d; });
 
 const loadDataEndOfDay = d3.csv("data/aal_test.csv", d => ({
   date: new Date(d.Date),
