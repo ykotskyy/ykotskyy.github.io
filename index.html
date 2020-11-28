@@ -125,8 +125,8 @@ const initialiseChart = data => {
      .attr('id', 'priceChart')
      .attr('stroke', 'steelblue')
      .attr('stroke-width', '1.5')
-     .attr('d', line);
-     .attr("data-legend",function(d) { return d2.Name})
+     .attr('d', line)
+     .attr("data-legend",function(d2) { return d2.Name});
 
      // renders x and y crosshair
      const focus = svg
