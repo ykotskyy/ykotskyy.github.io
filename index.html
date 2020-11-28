@@ -36,10 +36,8 @@
                                         // create a cell in each row for each column
                                         rows.selectAll("td")
                                             .data(function(row) {
-                                                return columns.map(function(k,i) {
-                                                    return {'value': row[i],
-                                                            'column': k
-                                                          };
+                                                return columns.map(function(column) {
+                                                        return {column: column, value: row[column]};
                                                 });
                                             })
                                             .enter()
@@ -369,7 +367,7 @@ body {
   display:block;
   float:center;
   width:85%;
-  height:250px;
+  height:150px;
   border:2px solid white;
   margin-left:10%;
   margin-bottom:10px;
