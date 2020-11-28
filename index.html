@@ -176,11 +176,7 @@ const initialiseChart = data => {
       updateLegends(currentPoint);
     }
 
-    legend = svg.append("g")
-   .attr("class","legend")
-   .attr("transform","translate(50,30)")
-   .style("font-size","12px")
-   .call(d3.legend)
+
     const updateLegends = currentData => {
         d3.selectAll('.lineLegend').remove();
           const legendKeys = Object.keys(data[0]);
