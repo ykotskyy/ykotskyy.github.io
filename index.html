@@ -24,44 +24,10 @@
             //       .text(function(d){
               //        return d; });
 
-d3.csv("data/test.csv", function(data) {
-    // the columns you'd like to display
-      var columns = ["Nasdaq_Traded", "Security_Name","Listing_Exchange","Market_Category","ETF","Financial_Status","CQS_Symbol","NASDAQ_Symbol", "NextShares"];
-      var table = d3.select("info").append("table"),
-                              thead = table.append("thead"),
-                              tbody = table.append("tbody");
 
-                          // append the header row
-                          thead.append("tr")
-                              .selectAll("th")
-                              .data(columns)
-                              .enter()
-                              .append("th")
-                                  .text(function(column) { return column; });
-
-                          // create a row for each object in the data
-                          var rows = tbody.selectAll("tr")
-                              .data(data)
-                              .enter()
-                              .append("tr");
-
-                          // create a cell in each row for each column
-                          var cells = rows.selectAll("td")
-                              .data(function(row) {
-                                  return columns.map(function(column) {
-                                      return {column: column, value: row[column]};
-                                  });
-                              })
-                              .enter()
-                              .append("td")
-                                  .text(function(d) { return d.value; });
-                      });
   </script>
 
   <div id="chart">
-
-
-
     <script>
       // self executing function here
       (function() {
@@ -84,7 +50,38 @@ d3.csv("data/test.csv", function(data) {
       //            .enter()
         //          .append("p");
                 //  .text(function(d){ return "This is data element #" + d; });
+                d3.csv("data/test.csv", function(data) {
+                    // the columns you'd like to display
+                      var columns = ["Nasdaq_Traded", "Security_Name","Listing_Exchange","Market_Category","ETF","Financial_Status","CQS_Symbol","NASDAQ_Symbol", "NextShares"];
+                      var table = d3.select("info").append("table"),
+                                              thead = table.append("thead"),
+                                              tbody = table.append("tbody");
 
+                                          // append the header row
+                                          thead.append("tr")
+                                              .selectAll("th")
+                                              .data(columns)
+                                              .enter()
+                                              .append("th")
+                                                  .text(function(column) { return column; });
+
+                                          // create a row for each object in the data
+                                          var rows = tbody.selectAll("tr")
+                                              .data(data)
+                                              .enter()
+                                              .append("tr");
+
+                                          // create a cell in each row for each column
+                                          var cells = rows.selectAll("td")
+                                              .data(function(row) {
+                                                  return columns.map(function(column) {
+                                                      return {column: column, value: row[column]};
+                                                  });
+                                              })
+                                              .enter()
+                                              .append("td")
+                                                  .text(function(d) { return d.value; });
+                                      });
 
 const loadDataEndOfDay = d3.csv("data/aal_test.csv", d => ({
   date: new Date(d.Date),
@@ -367,7 +364,7 @@ const initialiseChart = data => {
 
 <style>
 body {
-  
+  #background: #00151c;
 }
 
 #chart {
