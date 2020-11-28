@@ -126,7 +126,7 @@ const initialiseChart = data => {
      .attr('stroke', 'steelblue')
      .attr('stroke-width', '1.5')
      .attr('d', line)
-     .attr("data-legend",function(d2) { return d2.Name});
+     //.attr("data-legend",function(d1) { return d2.Name});
 
      // renders x and y crosshair
      const focus = svg
@@ -207,11 +207,11 @@ const initialiseChart = data => {
             .attr('transform', 'translate(15,9)');
           };
 
-          legend = svg.append("g")
-         .attr("class","legend")
-         .attr("transform","translate(50,30)")
-         .style("font-size","12px")
-         .call(d3.legend)
+          //legend = svg.append("g")
+      //   .attr("class","legend")
+      //   .attr("transform","translate(50,30)")
+        // .style("font-size","12px")
+      //   .call(d3.legend)
 
           /* Volume series bars */
             const volData = data.filter(d => d['volume'] !== null && d['volume'] !== 0);
