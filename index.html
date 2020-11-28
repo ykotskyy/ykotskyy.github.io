@@ -16,7 +16,7 @@
          // the DOM will be available here
          console.log("made it to graph data");
     // All the JavaScript is here
-const extra = d3.csv("data/test.csv", d => ({
+var extra = d3.csv("data/test.csv", d => ({
   Nasdaq: (d.NasdaqTraded),
   Name: (d.SecurityName),
   }));
