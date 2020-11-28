@@ -14,13 +14,15 @@
     d3.csv("data/test.csv", function(data){
     return data;
     });
+
     console.log(extra);
 
-    d3.select("info")
-                     .selectAll("p")
+    d3.select("body")
+                     .selectAll("info")
                      .data(extra)
                      .enter()
-                     .append("p");
+                     .append("info");
+                     .text(function(d){ return "This is data element #" + d; });
     </script>
   </div>
 
@@ -346,7 +348,7 @@ body {
   border:2px solid white;
   margin-left:10%;
   margin-bottom:10px;
-  background-color: transparent;
+  background-color: white;
 
 
 
