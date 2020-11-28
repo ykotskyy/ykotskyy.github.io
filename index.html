@@ -7,57 +7,59 @@
 </head>
 
 <body>
-  <div id="chart">
-  <div id = "info"></div>
-    <script>
-    //var extra = d3.csv("data/test.csv").then(function(data){
-    //console.log(data);
-    //return data;
-    //});
+  <div id="info"></div>
+  <script>
+  //var extra = d3.csv("data/test.csv").then(function(data){
+  //console.log(data);
+  //return data;
+  //});
 
-    //var table = d3.select('info').append('table');
-    //table.append()
-    //info.append()
-      //               .selectAll("info")
-        //             .data(extra)
-          //           .enter()
-            //         .append("info")
-              //       .text(function(d){
-                //        return d; });
+  //var table = d3.select('info').append('table');
+  //table.append()
+  //info.append()
+    //               .selectAll("info")
+      //             .data(extra)
+        //           .enter()
+          //         .append("info")
+            //       .text(function(d){
+              //        return d; });
 
 d3.csv("data/test.csv", function(data) {
-      // the columns you'd like to display
-        var columns = ["Nasdaq_Traded", "Security_Name","Listing_Exchange","Market_Category","ETF","Financial_Status","CQS_Symbol","NASDAQ_Symbol", "NextShares"];
-        var table = d3.select("info").append("table"),
-                                thead = table.append("thead"),
-                                tbody = table.append("tbody");
+    // the columns you'd like to display
+      var columns = ["Nasdaq_Traded", "Security_Name","Listing_Exchange","Market_Category","ETF","Financial_Status","CQS_Symbol","NASDAQ_Symbol", "NextShares"];
+      var table = d3.select("info").append("table"),
+                              thead = table.append("thead"),
+                              tbody = table.append("tbody");
 
-                            // append the header row
-                            thead.append("tr")
-                                .selectAll("th")
-                                .data(columns)
-                                .enter()
-                                .append("th")
-                                    .text(function(column) { return column; });
+                          // append the header row
+                          thead.append("tr")
+                              .selectAll("th")
+                              .data(columns)
+                              .enter()
+                              .append("th")
+                                  .text(function(column) { return column; });
 
-                            // create a row for each object in the data
-                            var rows = tbody.selectAll("tr")
-                                .data(data)
-                                .enter()
-                                .append("tr");
+                          // create a row for each object in the data
+                          var rows = tbody.selectAll("tr")
+                              .data(data)
+                              .enter()
+                              .append("tr");
 
-                            // create a cell in each row for each column
-                            var cells = rows.selectAll("td")
-                                .data(function(row) {
-                                    return columns.map(function(column) {
-                                        return {column: column, value: row[column]};
-                                    });
-                                })
-                                .enter()
-                                .append("td")
-                                    .text(function(d) { return d.value; });
-                        });
-    </script>
+                          // create a cell in each row for each column
+                          var cells = rows.selectAll("td")
+                              .data(function(row) {
+                                  return columns.map(function(column) {
+                                      return {column: column, value: row[column]};
+                                  });
+                              })
+                              .enter()
+                              .append("td")
+                                  .text(function(d) { return d.value; });
+                      });
+  </script>
+
+  <div id="chart">
+
 
 
     <script>
