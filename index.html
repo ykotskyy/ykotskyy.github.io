@@ -16,12 +16,17 @@
          // the DOM will be available here
          console.log("made it to graph data");
     // All the JavaScript is here
-var extra = d3.csv("data/test.csv", d => ({
+var extra = d3.csv("data/test.csv", d => {
   Nasdaq: (d.NasdaqTraded),
   Name: (d.SecurityName),
-  }));
+  });
 
-
+  var p = d3.select("info")
+                  .selectAll("p")
+                  .data(extra)
+                  .text(function (d) {
+                      return d;
+                  });
 
 const loadDataEndOfDay = d3.csv("data/aal_test.csv", d => ({
   date: new Date(d.Date),
@@ -294,12 +299,7 @@ const initialiseChart = data => {
       })();
 
 
-      var p = d3.select("info")
-                      .selectAll("p")
-                      .data(extra)
-                      .text(function (d) {
-                          return d;
-                      });
+
       </script>
   </div>
 
