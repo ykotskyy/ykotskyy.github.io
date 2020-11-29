@@ -11,6 +11,23 @@
 <body>
   <div id="info">
     <script>
+
+    // create some people
+    function getCSVdata( ) {
+    d3.csv("data/test.csv", function(d) {
+        return {
+            Nasdaq : d.Nasdaq_Traded,
+            Name: d.Security_Name
+        };
+    }).then(function(data) {
+      console.log("file has " + data.length + " rows");
+      logger(data);
+    });
+}
+
+var people = getCSVdata();
+
+
     function tabulate(data, columns) {
     var table = d3.select("#info").append("table"),
     thead = table.append("thead"),
@@ -50,13 +67,6 @@
 
   return table;
 }
-
-// create some people
-const people  = d3.csv("data/test.csv").then(function(data) {
-  console.log(data); // [{"Hello": "world"}, …]
-});
-
-
 
 // render the table
 var peopleTable = tabulate(people, ["name", "age"]);
