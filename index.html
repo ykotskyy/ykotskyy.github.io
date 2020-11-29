@@ -11,13 +11,20 @@
 <body>
   <div id="info">
     <script>
-    var columns = ['Nasdaq','Name'];
+    var columns = ['Nasdaq','Name','Exchange','Market Category','ETF','Financial Status','CQS Symbol','Nasdaq','NextShares'];
     // create some people
     function getCSVdata( ) {
     d3.csv("data/test.csv", function(d) {
         return {
             Nasdaq : d.Nasdaq_Traded,
-            Name: d.Security_Name
+            Name: d.Security_Name,
+            Exchange: d.Listing_Exchange,
+            Market Category:d.Market_Category,
+            ETF:d.ETF,
+            Financial Status: d.Financial_Status,
+            CQS Sym: d.CQS_Symbol,
+            Nasdaq:d.NASDAQ_,
+            NextShares:d.NextShares
         };
     }).then(fulfilled);
 }
@@ -75,11 +82,6 @@ peopleTable.selectAll("thead th")
     return column.charAt(0).toUpperCase() + column.substr(1);
   });
 
-// sort by age
-peopleTable.selectAll("tbody tr")
-  .sort(function(a, b) {
-    return d3.descending(a.age, b.age);
-  });
 </script>
   </div>
   <div id="chart">
