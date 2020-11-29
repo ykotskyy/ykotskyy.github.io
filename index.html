@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://d3js.org/d3.v6.min.js"></script>
 
   <title> MoneyTalk </title>
 </head>
@@ -9,10 +10,10 @@
 
 <body>
   <div id="info">
-    <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js"></script>
+
     <script type="text/javascript" charset="utf-8">
         d3.text("data/test.csv", function(datasetText) {
-        var parsedCSV = d3.csv.parseRows(datasetText);
+        var parsedCSV = d3.csvParseRows(datasetText);
         var sampleHTML = d3.select("#info")
             .append("table")
 
@@ -28,7 +29,6 @@
         </script>
   </div>
   <div id="chart">
-    <script src="https://d3js.org/d3.v6.min.js"></script>
     <script>
          console.log("made it to graph data");
 
