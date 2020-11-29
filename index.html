@@ -6,10 +6,6 @@
   <title> MoneyTalk </title>
 
 
-  <script>
-
-  </script>
-
 </head>
 
 
@@ -21,20 +17,7 @@
       // self executing function here
       (function() {
 
-        d3.text("data/test.csv", function(datasetText) {
-              var parsedCSV = d3.csv.parseRows(datasetText);
-              var sampleHTML = d3.select("#chart")
-                  .append("table")
 
-                  .selectAll("tr")
-                  .data(parsedCSV)
-                  .enter().append("tr")
-
-                  .selectAll("td")
-                  .data(function(d){return d;})
-                  .enter().append("td")
-                  .text(function(d){return d;})
-              });
 
          // your page initialization code here
          // the DOM will be available here
@@ -88,6 +71,21 @@ const initialiseChart = data => {
     .append('g')
     .attr('transform', `translate(${margin['left']}, ${margin['top']})`);
 
+
+    d3.text("data/test.csv", function(datasetText) {
+          var parsedCSV = d3.csv.parseRows(datasetText);
+          var sampleHTML = d3.select("#chart")
+              .append("table")
+
+              .selectAll("tr")
+              .data(parsedCSV)
+              .enter().append("tr")
+
+              .selectAll("td")
+              .data(function(d){return d;})
+              .enter().append("td")
+              .text(function(d){return d;})
+          });
 
   // find data range
   const xMin = d3.min(data, d => {
