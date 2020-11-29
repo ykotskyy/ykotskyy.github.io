@@ -11,7 +11,7 @@
 <body>
   <div id="info">
     <script>
-
+    var columns = ['Nasdaq','Name'];
     // create some people
     function getCSVdata( ) {
     d3.csv("data/test.csv", function(d) {
@@ -24,7 +24,7 @@
 
 getCSVdata();
 
-function fulfilled(data,colums) {
+function fulfilled(data) {
   console.log(data);
 
   var table = d3.select("#info").append("table"),
