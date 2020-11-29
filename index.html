@@ -9,7 +9,7 @@
   <script>
   d3.text("data/test.csv", function(datasetText) {
         var parsedCSV = d3.csv.parseRows(datasetText);
-        var sampleHTML = d3.select("#info")
+        var sampleHTML = d3.select("#chart")
             .append("table")
 
             .selectAll("tr")
