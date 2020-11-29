@@ -366,7 +366,76 @@ const initialiseChart = data => {
   </div>
 
 <div id="comments">
-dafsdasd
+  <script>
+  var columns = ['date','Comments','Score','Sentiment'];
+  // create some people
+  function getCSVdata2( ) {
+  d3.csv("data/comments.csv", function(d) {
+    if(d.Comments != '') {
+      return {
+          date : d.Date,
+          Comments: d.Comments,
+          Score: d.Score,
+          Sentiment:d.Sentiment,
+      }
+    };
+  }).then(fulfilled);
+  }
+
+  getCSVdata2();
+
+  function fulfilled(data) {
+  console.log(data);
+
+  var table = d3.select("#comments").append("table"),
+  thead = table.append("thead"),
+  tbody = table.append("tbody");
+
+  // append the header row
+  thead.append("tr")
+  .selectAll("th")
+  .data(columns)
+  .enter()
+  .append("th")
+  .text(function(column) {
+    return column;
+  });
+
+  // create a row for each object in the data
+  var rows = tbody.selectAll("tr")
+    .data(data)
+    .enter()
+    .append("tr");
+
+    // create a cell in each row for each column
+    var cells = rows.selectAll("td")
+      .data(function(row) {
+        return columns.map(function(column) {
+          return {
+            column: column,
+            value: row[column]
+          };
+        });
+      })
+      .enter()
+      .append("td")
+      .text(function(d) {
+        return d.value;
+      });
+
+    return table;
+  }
+
+  // render the table
+  var peopleTable = tabulate(data, ["Nasdaq", "Name"]);
+
+  // uppercase the column headers
+  peopleTable.selectAll("thead th")
+  .text(function(column) {
+  return column.charAt(0).toUpperCase() + column.substr(1);
+  });
+
+  </script>
 </div>
 
 </body>
