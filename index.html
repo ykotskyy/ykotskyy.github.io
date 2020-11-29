@@ -13,7 +13,7 @@
 
     <script type="text/javascript" charset="utf-8">
         d3.text("data/test.csv", function(datasetText) {
-        var parsedCSV = d3.csvParseRows(datasetText);
+        var parsedCSV = d3.csvParseRows(datasetText[,1]);
         var sampleHTML = d3.select("#info")
             .append("table")
 
