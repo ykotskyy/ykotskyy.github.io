@@ -10,10 +10,9 @@
 
 <body>
   <div id="info">
-
-    <script type="text/javascript" charset="utf-8">
+    <script>
     function tabulate(data, columns) {
-  var table = d3.select("#info").append("table"),
+    var table = d3.select("#info").append("table"),
     thead = table.append("thead"),
     tbody = table.append("tbody");
 
@@ -53,23 +52,11 @@
 }
 
 // create some people
-var people = [{
-    name: "Jill",
-    age: 30
-  },
-  {
-    name: "Bob",
-    age: 32
-  },
-  {
-    name: "George",
-    age: 29
-  },
-  {
-    name: "Sally",
-    age: 31
-  }
-];
+var people =  d3.csv("data/aal_test.csv", d => ({
+  date: new Date(d.Date),
+  volume: Number(d.Volume),
+
+}));
 
 // render the table
 var peopleTable = tabulate(people, ["name", "age"]);
