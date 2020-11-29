@@ -367,7 +367,7 @@ const initialiseChart = data => {
 
 <div id="comments">
   <script>
-  var columns = ['date','Comments','Score','Sentiment'];
+  var columns2 = ['date','Comments','Score','Sentiment'];
   // create some people
   function getCSVdata2( ) {
   d3.csv("data/comments.csv", function(d) {
@@ -394,7 +394,7 @@ const initialiseChart = data => {
   // append the header row
   thead.append("tr")
   .selectAll("th")
-  .data(columns)
+  .data(columns2)
   .enter()
   .append("th")
   .text(function(column) {
