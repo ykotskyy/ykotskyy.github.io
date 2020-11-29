@@ -11,7 +11,7 @@
 <body>
   <div id="info">
     <script>
-    var columns = ['Nasdaq_Traded','Name','Exchange','Market_Category','ETF','Financial Status','CQS Symbol','Nasdaq','NextShares'];
+    var columns = ['Nasdaq_Traded','Name','Exchange','Market_Category','ETF','Financial_Status','CQS_Symbol','NASDAQ_Symbol','NextShares'];
     // create some people
     function getCSVdata( ) {
     d3.csv("data/test.csv", function(d) {
@@ -21,9 +21,9 @@
             Exchange: d.Listing_Exchange,
             Market_Category:d.Market_Category,
             ETF:d.ETF,
-            FinancialStatus: d.Financial_Status,
-            cqssym: d.CQS_Symbol,
-            Nasdaq:d.NASDAQ_,
+            Financial_Status: d.Financial_Status,
+            CQS_Symbol: d.CQS_Symbol,
+            NASDAQ_Symbol:d.NASDAQ_Symbol,
             NextShares:d.NextShares
         };
     }).then(fulfilled);
