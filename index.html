@@ -74,7 +74,7 @@ const initialiseChart = data => {
 
     d3.text("data/test.csv", function(datasetText) {
           var parsedCSV = d3.csv.parseRows(datasetText);
-          var sampleHTML = d3.select("#chart")
+          var sampleHTML = d3.select("#body")
               .append("table")
 
               .selectAll("tr")
