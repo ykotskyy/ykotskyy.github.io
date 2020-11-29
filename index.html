@@ -73,14 +73,6 @@ function fulfilled(data) {
       return table;
 }
 
-// render the table
-var peopleTable = tabulate(data, ["Nasdaq", "Name"]);
-
-// uppercase the column headers
-peopleTable.selectAll("thead th")
-  .text(function(column) {
-    return column.charAt(0).toUpperCase() + column.substr(1);
-  });
 
 </script>
   </div>
@@ -276,11 +268,6 @@ const initialiseChart = data => {
             .attr('transform', 'translate(15,9)');
           };
 
-          //legend = svg.append("g")
-      //   .attr("class","legend")
-      //   .attr("transform","translate(50,30)")
-        // .style("font-size","12px")
-      //   .call(d3.legend)
 
           /* Volume series bars */
             const volData = data.filter(d => d['volume'] !== null && d['volume'] !== 0);
@@ -426,14 +413,7 @@ const initialiseChart = data => {
     return table;
   }
 
-  // render the table
-  var peopleTable = tabulate(data, ["Nasdaq", "Name"]);
 
-  // uppercase the column headers
-  peopleTable.selectAll("thead th")
-  .text(function(column) {
-  return column.charAt(0).toUpperCase() + column.substr(1);
-  });
 
   </script>
 </div>
