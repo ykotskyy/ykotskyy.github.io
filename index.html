@@ -16,7 +16,7 @@
     function getCSVdata( ) {
     d3.csv("data/test.csv", function(d) {
         return {
-            Nasdaq : d.Nasdaq_Traded,
+            Nasdaq_Traded : d.Nasdaq_Traded,
             Name: d.Security_Name,
             Exchange: d.Listing_Exchange,
             MarketCategory:d.Market_Category,
