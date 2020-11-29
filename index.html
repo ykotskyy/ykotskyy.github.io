@@ -410,7 +410,7 @@ const initialiseChart = data => {
     // create a cell in each row for each column
     var cells = rows.selectAll("td")
       .data(function(row) {
-        return columns.map(function(column) {
+        return columns2.map(function(column) {
           return {
             column: column,
             value: row[column]
