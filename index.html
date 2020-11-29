@@ -19,14 +19,15 @@
             Nasdaq : d.Nasdaq_Traded,
             Name: d.Security_Name
         };
-    }).then(function(data) {
-      console.log("file has " + data.length + " rows");
-      logger(data);
-    });
+    }).then(fulfilled) {
 }
 
 var people = getCSVdata();
 
+function fulfilled(data) {
+  console.log(data);
+  console.log(people);
+}
 
     function tabulate(data, columns) {
     var table = d3.select("#info").append("table"),
